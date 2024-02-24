@@ -1,0 +1,53 @@
+{
+  "name": "github-dashboard",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "format": "prettier . --write",
+    "lint:code": "eslint --ext .ts,.vue src --fix",
+    "lint:style": "stylelint '**/*.{css,vue}' --fix",
+    "type": "vue-tsc --noEmit",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.8.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "effector": "^23.2.0",
+    "effector-vue": "^23.0.0",
+    "lucide-vue-next": "^0.338.0",
+    "radix-vue": "^1.4.8",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7",
+    "vue": "^3.4.19",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.20",
+    "@typescript-eslint/parser": "^7.0.2",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-vue": "^9.22.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "postcss": "^8.4.35",
+    "postcss-html": "^1.6.0",
+    "prettier": "^3.2.5",
+    "stylelint": "^16.2.1",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard": "^36.0.0",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.2.2",
+    "typescript-eslint": "^7.0.2",
+    "vite": "^5.1.4",
+    "vue-eslint-parser": "^9.4.2",
+    "vue-tsc": "^1.8.27"
+  }
+}
