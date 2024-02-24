@@ -23,6 +23,7 @@
     "baseUrl": ".",
     "paths": {
       "@pages/*": ["./src/pages/*"],
+      "@features/*": ["./src/features/*"],
       "@shadcn": ["./src/shared/shadcn/index.ts"],
       "@shadcn/lib": ["./src/shared/shadcn/lib.ts"]
     }

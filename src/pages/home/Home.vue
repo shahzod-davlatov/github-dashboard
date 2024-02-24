@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { Button } from '@shadcn'
+import { Effector } from '@features/effector'
 </script>
 
 <template>
   <div
     class="h-screen w-screen flex justify-center items-center text-violet-700"
   >
-    <Button>Hello</Button>
+    <Effector />
   </div>
 </template>
