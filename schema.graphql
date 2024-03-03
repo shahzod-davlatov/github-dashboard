@@ -1,0 +1,537 @@
+type Address {
+  appartament: String!
+  comment: String
+  house: String!
+  street: String!
+}
+
+input AddressInput {
+  appartament: String!
+  comment: String
+  house: String!
+  street: String!
+}
+
+type BaseResponse {
+  reason: String
+  success: Boolean!
+}
+
+input CalculateDeliveryPackageDto {
+  height: Float!
+  length: Float!
+  weight: Float!
+  width: Float!
+}
+
+input CalculateDeliveryPointDto {
+  latitude: Float!
+  longitude: Float!
+}
+
+type CalculateDeliveryResponse {
+  options: [DeliveryOption!]!
+  reason: String
+  success: Boolean!
+}
+
+type CinemaOrder {
+  _id: String!
+  filmName: String!
+  orderNumber: Float!
+  phone: String!
+  status: CinemaOrderStatus!
+  tickets: [Ticket!]!
+}
+
+input CinemaOrderInput {
+  _id: String!
+  filmName: String!
+  orderNumber: Float!
+  phone: String!
+  status: CinemaOrderStatus!
+  tickets: [TicketInput!]!
+}
+
+enum CinemaOrderStatus {
+  CANCELED
+  PAYED
+}
+
+input CinemaPersonInput {
+  fullName: String!
+  id: String!
+  professions: [Profession!]!
+}
+
+type Country {
+  code: String!
+  code2: String!
+  id: Float!
+  name: String!
+}
+
+input CountryInput {
+  code: String!
+  code2: String!
+  id: Float!
+  name: String!
+}
+
+input CreateDeliveryOrderAddressDto {
+  appartament: String!
+  comment: String
+  house: String!
+  street: String!
+}
+
+input CreateDeliveryOrderDeliveryOptionDto {
+  days: Float!
+  id: String!
+  name: String!
+  price: Float!
+  type: DeliveryOptionType!
+}
+
+input CreateDeliveryOrderPersonDto {
+  firstname: String!
+  lastname: String!
+  middlename: String
+  phone: String!
+}
+
+input CreateDeliveryOrderPointDto {
+  id: String!
+  latitude: Float!
+  longitude: Float!
+  name: String!
+}
+
+input CreatePaymentDebitCardDto {
+  cvv: String!
+  expireDate: String!
+  pan: String!
+}
+
+input CreatePaymentPersonDto {
+  firstname: String!
+  lastname: String!
+  middlename: String
+  phone: String!
+}
+
+input CreatePaymentSeanceDto {
+  date: String!
+  time: String!
+}
+
+input CreatePaymentTicketsDto {
+  column: Float!
+  row: Float!
+}
+
+type DeliverResponse {
+  order: DeliveryOrder!
+  reason: String
+  success: Boolean!
+}
+
+type DeliveryOption {
+  days: Float!
+  id: String!
+  name: String!
+  price: Float!
+  type: DeliveryOptionType!
+}
+
+enum DeliveryOptionType {
+  DEFAULT
+  EXPRESS
+}
+
+input DeliveryOpttionInput {
+  days: Float!
+  id: String!
+  name: String!
+  price: Float!
+  type: DeliveryOptionType!
+}
+
+type DeliveryOrder {
+  _id: String!
+  cancellable: Boolean!
+  payer: Payer!
+  receiver: DeliveryPerson!
+  receiverAddress: Address!
+  receiverPoint: DeliveryPoint!
+  sender: DeliveryPerson!
+  senderAddress: Address!
+  senderPoint: DeliveryPoint!
+  status: DeliveryStatus!
+}
+
+input DeliveryOrderInput {
+  _id: String!
+  cancellable: Boolean!
+  payer: Payer!
+  receiver: DeliveryPersonInput!
+  receiverAddress: AddressInput!
+  receiverPoint: DeliveryPointInput!
+  sender: DeliveryPersonInput!
+  senderAddress: AddressInput!
+  senderPoint: DeliveryPointInput!
+  status: DeliveryStatus!
+}
+
+type DeliveryOrderResponse {
+  order: DeliveryOrder!
+  reason: String
+  success: Boolean!
+}
+
+type DeliveryOrdersResponse {
+  orders: [DeliveryOrder!]!
+  reason: String
+  success: Boolean!
+}
+
+type DeliveryPackageType {
+  height: Float!
+  id: String!
+  length: Float!
+  name: String!
+  weight: Float!
+  width: Float!
+}
+
+input DeliveryPackageTypeInput {
+  height: Float!
+  id: String!
+  length: Float!
+  name: String!
+  weight: Float!
+  width: Float!
+}
+
+type DeliveryPackageTypesResponse {
+  packages: [DeliveryPackageType!]!
+  reason: String
+  success: Boolean!
+}
+
+type DeliveryPerson {
+  firstname: String!
+  lastname: String!
+  middlename: String
+  phone: String!
+}
+
+input DeliveryPersonInput {
+  firstname: String!
+  lastname: String!
+  middlename: String
+  phone: String!
+}
+
+type DeliveryPoint {
+  id: String!
+  latitude: Float!
+  longitude: Float!
+  name: String!
+}
+
+input DeliveryPointInput {
+  id: String!
+  latitude: Float!
+  longitude: Float!
+  name: String!
+}
+
+type DeliveryPointsResponse {
+  points: [DeliveryPoint!]!
+  reason: String
+  success: Boolean!
+}
+
+enum DeliveryStatus {
+  CANCELED
+  IN_PROCESSING
+  ON_MY_WAY
+  SUCCESS
+  WAITING_COURIER
+}
+
+type Film {
+  actors: [FilmPerson!]!
+  ageRating: Rating!
+  country: Country
+  description: String!
+  directors: [FilmPerson!]!
+  genres: [String!]!
+  id: String!
+  img: String!
+  name: String!
+  originalName: String!
+  releaseDate: String!
+  runtime: Float!
+  userRatings: FilmUserRaiting!
+}
+
+type FilmHall {
+  name: String!
+  places: [[FilmHallCell!]!]!
+}
+
+type FilmHallCell {
+  price: Float!
+  type: FilmHallCellType!
+}
+
+input FilmHallCellInput {
+  price: Float!
+  type: FilmHallCellType!
+}
+
+enum FilmHallCellType {
+  BLOCKED
+  COMFORT
+  ECONOM
+}
+
+input FilmHallInput {
+  name: String!
+  places: [[FilmHallCellInput!]!]!
+}
+
+input FilmInput {
+  actors: [CinemaPersonInput!]! = []
+  ageRating: Rating!
+  country: CountryInput
+  description: String!
+  directors: [CinemaPersonInput!]! = []
+  genres: [String!]! = []
+  id: String!
+  img: String!
+  name: String!
+  originalName: String!
+  releaseDate: String!
+  runtime: Float!
+  userRatings: FilmUserRaitingInput!
+}
+
+type FilmPerson {
+  fullName: String!
+  id: String!
+  professions: [Profession!]!
+}
+
+type FilmResponse {
+  film: Film!
+  reason: String
+  success: Boolean!
+}
+
+type FilmTicketSeance {
+  date: String!
+  time: String!
+}
+
+input FilmTicketSeanceInput {
+  date: String!
+  time: String!
+}
+
+type FilmUserRaiting {
+  imdb: String!
+  kinopoisk: String!
+}
+
+input FilmUserRaitingInput {
+  imdb: String!
+  kinopoisk: String!
+}
+
+type FilmsResponse {
+  films: [Film!]!
+  reason: String
+  success: Boolean!
+}
+
+type Mutation {
+  calculateDelivery(
+    package: CalculateDeliveryPackageDto!
+    receiverPoint: CalculateDeliveryPointDto!
+    senderPoint: CalculateDeliveryPointDto!
+  ): CalculateDeliveryResponse!
+  cancelCinemaOrder(orderId: String!): BaseResponse!
+  cancelDeliveryOrder(orderId: String!): BaseResponse!
+  createCinemaPayment(
+    debitCard: CreatePaymentDebitCardDto!
+    filmId: String!
+    person: CreatePaymentPersonDto!
+    seance: CreatePaymentSeanceDto!
+    tickets: [CreatePaymentTicketsDto!]!
+  ): PaymentResponse!
+  createDeliveryOrder(
+    option: CreateDeliveryOrderDeliveryOptionDto!
+    payer: Payer!
+    receiver: CreateDeliveryOrderPersonDto!
+    receiverAddress: CreateDeliveryOrderAddressDto!
+    receiverPoint: CreateDeliveryOrderPointDto!
+    sender: CreateDeliveryOrderPersonDto!
+    senderAddress: CreateDeliveryOrderAddressDto!
+    senderPoint: CreateDeliveryOrderPointDto!
+  ): DeliverResponse!
+  createOtp(phone: String!): OtpResponse!
+  signin(code: Float!, phone: String!): SignInResponse!
+  updateProfile(
+    phone: String!
+    profile: UpdateProfileProfileDto!
+  ): UpdateProfileResponse!
+}
+
+type Otp {
+  _id: String!
+  code: Float!
+  created: String!
+  phone: String!
+  retryDelay: Float!
+}
+
+input OtpInput {
+  _id: String!
+  code: Float!
+  created: String!
+  phone: String!
+  retryDelay: Float!
+}
+
+type OtpResponse {
+  reason: String
+  retryDelay: Float!
+  success: Boolean!
+}
+
+enum Payer {
+  RECEIVER
+  SENDER
+}
+
+type PaymentResponse {
+  order: String!
+  reason: String
+  success: Boolean!
+}
+
+enum Profession {
+  ACTOR
+  DIRECTOR
+}
+
+type Query {
+  getCinemaOrders: TicketsResponse!
+  getCinemaToday: FilmsResponse!
+  getDeliveryOrder(orderId: String!): DeliveryOrderResponse!
+  getDeliveryOrders: DeliveryOrdersResponse!
+  getDeliveryPackageTypes: DeliveryPackageTypesResponse!
+  getDeliveryPoints: DeliveryPointsResponse!
+  getFilm(filmId: String!): FilmResponse!
+  getFilmSchedule(filmId: String!): ScheduleResponse!
+  session: SessionResponse!
+}
+
+enum Rating {
+  G
+  NC17
+  PG
+  PG13
+  R
+}
+
+type Schedule {
+  date: String!
+  seances: [ScheduleSeance!]!
+}
+
+type ScheduleResponse {
+  reason: String
+  schedules: [Schedule!]!
+  success: Boolean!
+}
+
+type ScheduleSeance {
+  hall: FilmHall!
+  payedTickets: [Ticket!]!
+  time: String!
+}
+
+type SessionResponse {
+  reason: String
+  success: Boolean!
+  user: User!
+}
+
+type SignInResponse {
+  reason: String
+  success: Boolean!
+  token: String!
+  user: User!
+}
+
+type Ticket {
+  _id: String!
+  column: Float!
+  filmId: String!
+  phone: String!
+  row: Float!
+  seance: FilmTicketSeance!
+}
+
+input TicketInput {
+  _id: String!
+  column: Float!
+  filmId: String!
+  phone: String!
+  row: Float!
+  seance: FilmTicketSeanceInput!
+}
+
+type TicketsResponse {
+  reason: String
+  success: Boolean!
+  tickets: [Ticket!]!
+}
+
+input UpdateProfileProfileDto {
+  city: String!
+  email: String!
+  firstname: String!
+  lastname: String!
+  middlename: String!
+}
+
+type UpdateProfileResponse {
+  reason: String
+  success: Boolean!
+  user: User!
+}
+
+type User {
+  _id: String!
+  city: String
+  email: String
+  firstname: String
+  lastname: String
+  middlename: String
+  phone: String!
+}
+
+input UserInput {
+  _id: String!
+  city: String
+  email: String
+  firstname: String
+  lastname: String
+  middlename: String
+  phone: String!
+}

@@ -24,10 +24,12 @@
     "paths": {
       "@pages/*": ["./src/pages/*"],
       "@features/*": ["./src/features/*"],
+      "@constants/*": ["./src/shared/constants/*"],
+      "@graphql": ["./src/shared/graphql/index.ts"],
       "@shadcn": ["./src/shared/shadcn/index.ts"],
       "@shadcn/lib": ["./src/shared/shadcn/lib.ts"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.vue", "./codegen.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
