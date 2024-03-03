@@ -1,35 +1,38 @@
 <script setup lang="ts">
-import { Button } from '@shadcn'
-import { whenever } from '@vueuse/core'
-import { Github } from 'lucide-vue-next'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 
-const url = new URL('https://github.com/login/oauth/authorize')
-url.searchParams.set('client_id', '26e22c1022e4e4fb9e01')
-url.searchParams.set('redirect_uri', 'http://localhost:5173/auth')
-url.searchParams.set('allow_signup', 'false')
+import { whenever } from '@vueuse/core';
 
-const route = useRoute()
+import { Github } from 'lucide-vue-next';
+
+import { Button } from '@shadcn';
+
+const url = new URL('https://github.com/login/oauth/authorize');
+url.searchParams.set('client_id', '26e22c1022e4e4fb9e01');
+url.searchParams.set('redirect_uri', 'http://localhost:5173/auth');
+url.searchParams.set('allow_signup', 'false');
+
+const route = useRoute();
 
 const code = computed(() => {
   if (typeof route.query.code === 'string') {
-    return route.query.code
+    return route.query.code;
   }
 
-  return null
-})
+  return null;
+});
 
 whenever(
   code,
   (codeValue) => {
-    const test = new URL('https://github.com/login/oauth/access_token')
-    test.searchParams.set('client_id', '26e22c1022e4e4fb9e01')
+    const test = new URL('https://github.com/login/oauth/access_token');
+    test.searchParams.set('client_id', '26e22c1022e4e4fb9e01');
     test.searchParams.set(
       'client_secret',
       '8c8bed610aec1fb33584b7f37340376e008bfe99'
-    )
-    test.searchParams.set('code', codeValue)
+    );
+    test.searchParams.set('code', codeValue);
 
     void fetch(test, {
       method: 'POST',
@@ -41,11 +44,11 @@ whenever(
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
-      })
+        console.info(data);
+      });
   },
   { immediate: true }
-)
+);
 </script>
 
 <template>

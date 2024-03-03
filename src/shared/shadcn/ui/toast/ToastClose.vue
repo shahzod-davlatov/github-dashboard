@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { Cross2Icon } from '@radix-icons/vue'
-import { cn } from '@shadcn/lib'
-import { ToastClose, type ToastCloseProps } from 'radix-vue'
-import { type HTMLAttributes, computed } from 'vue'
+import { Cross2Icon } from '@radix-icons/vue';
+import { cn } from '@shadcn/lib';
+import { ToastClose, type ToastCloseProps } from 'radix-vue';
+import { type HTMLAttributes, computed } from 'vue';
 
 const props = defineProps<
   ToastCloseProps & {
-    class?: HTMLAttributes['class']
+    class?: HTMLAttributes['class'];
   }
->()
+>();
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const { class: _, ...delegated } = props;
 
-  return delegated
-})
+  return delegated;
+});
 </script>
 
 <template>

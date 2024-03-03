@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { type ButtonVariants, buttonVariants } from '.'
+import { type ButtonVariants, buttonVariants } from '.';
 
-import { cn } from '@shadcn/lib'
-import { Primitive, type PrimitiveProps } from 'radix-vue'
+import { cn } from '@shadcn/lib';
+import { Primitive, type PrimitiveProps } from 'radix-vue';
 
-import type { HTMLAttributes } from 'vue'
+import type { HTMLAttributes } from 'vue';
 
 interface Props extends PrimitiveProps {
-  variant?: ButtonVariants['variant']
-  size?: ButtonVariants['size']
-  as?: string
-  class?: HTMLAttributes['class']
+  variant?: ButtonVariants['variant'];
+  size?: ButtonVariants['size'];
+  as?: string;
+  class?: HTMLAttributes['class'];
 }
 
 const props = withDefaults(defineProps<Props>(), {
   as: 'button',
-})
+});
 </script>
 
 <template>

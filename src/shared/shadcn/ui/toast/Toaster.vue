@@ -6,13 +6,13 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
-} from '.'
+} from '.';
 
-import { useToast } from './use-toast'
+import { useToast } from './use-toast';
 
-import { isVNode } from 'vue'
+import { isVNode } from 'vue';
 
-const { toasts } = useToast()
+const { toasts } = useToast();
 </script>
 
 <template>

@@ -6,25 +6,28 @@ import {
   increment,
   decrement,
   PostsGate,
-} from '../model'
+} from '../model';
 
-import { Button, Card, CardHeader, CardTitle, CardContent } from '@shadcn'
-import { useQuery } from '@tanstack/vue-query'
-import { useStore, useUnit, useGate } from 'effector-vue/composition'
-import { Loader2 } from 'lucide-vue-next'
+import { useQuery } from '@tanstack/vue-query';
 
-const films = useStore($films)
-const limit = useStore($limit)
+import { useStore, useUnit, useGate } from 'effector-vue/composition';
 
-useGate(PostsGate, () => ({ id: 'Effector' }))
+import { Loader2 } from 'lucide-vue-next';
+
+import { Button, Card, CardHeader, CardTitle, CardContent } from '@shadcn';
+
+const films = useStore($films);
+const limit = useStore($limit);
+
+useGate(PostsGate, () => ({ id: 'Effector' }));
 
 const { isLoading } = useQuery({
   queryKey: ['effector', limit],
   queryFn: () => fetchFilmsFx(),
-})
+});
 
-const onIncrement = useUnit(increment)
-const onDecrement = useUnit(decrement)
+const onIncrement = useUnit(increment);
+const onDecrement = useUnit(decrement);
 </script>
 
 <template>

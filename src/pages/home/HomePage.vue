@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { Effector } from '@features/effector'
-import { Button } from '@shadcn'
-import { ref } from 'vue'
+import { Effector } from '@features/effector';
 
-const open = ref(true)
+import { ref } from 'vue';
+
+import { Button } from '@shadcn';
+
+const open = ref(true);
 </script>
 
 <template>

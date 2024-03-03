@@ -1,6 +1,7 @@
-import { GRAPHQL_ENDPOINT } from '@constants/api'
-import { graphql } from '@graphql'
-import request from 'graphql-request'
+import { GRAPHQL_ENDPOINT } from '@constants/api';
+
+import { graphql } from '@graphql';
+import request from 'graphql-request';
 
 export const effectorRequest = () =>
   request(
@@ -16,4 +17,4 @@ export const effectorRequest = () =>
         }
       }
     `)
-  )
+  );

@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { cn } from '@shadcn/lib'
-import { ToastTitle, type ToastTitleProps } from 'radix-vue'
-import { type HTMLAttributes, computed } from 'vue'
+import { cn } from '@shadcn/lib';
+import { ToastTitle, type ToastTitleProps } from 'radix-vue';
+import { type HTMLAttributes, computed } from 'vue';
 
 const props = defineProps<
   ToastTitleProps & { class?: HTMLAttributes['class'] }
->()
+>();
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props
+  const { class: _, ...delegated } = props;
 
-  return delegated
-})
+  return delegated;
+});
 </script>
 
 <template>

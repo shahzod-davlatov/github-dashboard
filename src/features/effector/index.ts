@@ -1,3 +1,3 @@
-import Effector from './ui/Effector.vue'
+import Effector from './ui/Effector.vue';
 
-export { Effector }
+export { Effector };
