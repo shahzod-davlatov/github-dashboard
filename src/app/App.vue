@@ -1,7 +1,14 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
+import { PageLayout } from '@pages/layout';
+
+import { RouterView, useRoute } from 'vue-router';
+
+const route = useRoute();
 </script>
 
 <template>
-  <RouterView />
+  <PageLayout v-if="route.path !== '/auth'">
+    <RouterView />
+  </PageLayout>
+  <RouterView v-else />
 </template>

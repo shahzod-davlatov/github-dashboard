@@ -1,3 +1,3 @@
-import Home from './HomePage.vue';
+import PageHome from './ui/PageHome.vue';
 
-export { Home };
+export { PageHome };

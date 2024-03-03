@@ -38,8 +38,8 @@ const onDecrement = useUnit(decrement);
       <Button @click="onDecrement">Decrement</Button>
     </div>
   </div>
-  <div class="flex flex-wrap justify-center mt-3 max-h-96 overflow-y-scroll">
-    <Loader2 v-if="isLoading" class="animate-spin h-10 w-10" />
+  <div class="mt-3 flex max-h-96 flex-wrap justify-center overflow-y-scroll">
+    <Loader2 v-if="isLoading" class="size-10 animate-spin" />
     <Card v-for="film in films" v-else :key="film.id">
       <CardHeader>
         <CardTitle>{{ film.name }}</CardTitle>

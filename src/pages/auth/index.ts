@@ -1,3 +1,3 @@
-import Auth from './AuthPage.vue';
+import PageAuth from './ui/PageAuth.vue';
 
-export { Auth };
+export { PageAuth };

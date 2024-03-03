@@ -24,6 +24,8 @@
     "paths": {
       "@pages/*": ["./src/pages/*"],
       "@features/*": ["./src/features/*"],
+      "@entities/*": ["./src/entities/*"],
+      "@ui/*": ["./src/shared/ui/*"],
       "@constants/*": ["./src/shared/constants/*"],
       "@graphql": ["./src/shared/graphql/index.ts"],
       "@shadcn": ["./src/shared/shadcn/index.ts"],
