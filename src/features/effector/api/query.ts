@@ -1,20 +1,18 @@
-import { GRAPHQL_ENDPOINT } from '@constants/api';
+import { client } from '@api';
 
 import { graphql } from '@graphql';
-import request from 'graphql-request';
 
-export const effectorRequest = () =>
-  request(
-    GRAPHQL_ENDPOINT,
+export const effectorRequest = (size: number) =>
+  client.value.request(
     graphql(`
-      query effector {
-        getCinemaToday {
-          films {
-            id
-            name
-            description
-          }
+      query Viewer($size: Int) {
+        viewer {
+          id
+          name
+          login
+          avatarUrl(size: $size)
         }
       }
-    `)
+    `),
+    { size }
   );

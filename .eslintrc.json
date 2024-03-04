@@ -100,6 +100,16 @@
             "position": "before"
           },
           {
+            "pattern": "@api",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "@graphql",
+            "group": "internal",
+            "position": "before"
+          },
+          {
             "pattern": "@pages/**",
             "group": "internal",
             "position": "before"
@@ -121,11 +131,6 @@
           },
           {
             "pattern": "@ui/**",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "@graphql/**",
             "group": "internal",
             "position": "before"
           },

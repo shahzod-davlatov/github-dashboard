@@ -8,9 +8,11 @@ import { useRoute, useRouter } from 'vue-router';
 
 import { whenever } from '@vueuse/core';
 
-import { Github } from 'lucide-vue-next';
+import { Loader2 } from 'lucide-vue-next';
 
 import { Button } from '@shadcn';
+
+import { GithubLogoIcon } from '@radix-icons/vue';
 
 type AuthResponse = {
   access_token: string;
@@ -63,9 +65,12 @@ whenever(
 
 <template>
   <div class="flex h-dvh w-dvw items-center justify-center">
-    <Button size="lg" as-child>
+    <Button v-if="code" size="lg" disabled>
+      <Loader2 class="mr-2 size-4 animate-spin" />Please wait
+    </Button>
+    <Button v-else size="lg" as-child>
       <a :href="url.toString()" target="_self">
-        <Github class="mr-2 size-4" />Continue with GitHub
+        <GithubLogoIcon class="mr-2 size-4" />Continue with GitHub
       </a>
     </Button>
   </div>

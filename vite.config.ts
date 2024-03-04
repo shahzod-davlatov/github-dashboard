@@ -10,6 +10,7 @@ export default defineConfig({
       '@features': path.resolve(__dirname, './src/features'),
       '@entities': path.resolve(__dirname, './src/entities'),
       '@ui': path.resolve(__dirname, './src/shared/ui'),
+      '@api': path.resolve(__dirname, './src/shared/api'),
       '@constants': path.resolve(__dirname, './src/shared/constants'),
       '@graphql': path.resolve(__dirname, './src/shared/graphql'),
       '@shadcn': path.resolve(__dirname, './src/shared/shadcn'),

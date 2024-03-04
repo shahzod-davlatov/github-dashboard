@@ -4,49 +4,41 @@ import { createStore, createEvent, sample, createEffect } from 'effector';
 
 import { createGate } from 'effector-vue/composition';
 
-type Film = {
-  id: string;
-  name: string;
-  description: string;
-};
+type Viewer = Awaited<ReturnType<typeof effectorRequest>>['viewer'];
 
-export const PostsGate = createGate({
-  name: 'Test',
+export const EffectorGate = createGate({
+  name: 'Effector',
 });
 
-export const fetchFilmsFx = createEffect(async () => {
-  const { getCinemaToday } = await effectorRequest();
+export const fetchViewerFx = createEffect(async (size: number) => {
+  const { viewer } = await effectorRequest(size);
 
-  return getCinemaToday.films;
+  return viewer;
 });
 
-export const $films = createStore<Film[]>([]).on(
-  fetchFilmsFx.doneData,
-  (_, films) => films
+export const $viewer = createStore<Viewer | null>(null).on(
+  fetchViewerFx.doneData,
+  (_, viewer) => viewer
 );
 
-export const $limit = createStore(1);
+export const $size = createStore(100);
 
 export const increment = createEvent();
 export const decrement = createEvent();
 
 sample({
   clock: increment,
-  source: $limit,
-  fn: (limit) => limit + 1,
-  target: $limit,
+  source: $size,
+  fn: (size) => size + 100,
+  target: $size,
 });
 
 sample({
   clock: decrement,
-  source: $limit,
-  fn: (limit) => limit - 1,
-  target: $limit,
+  source: $size,
+  fn: (size) => size - 100,
+  target: $size,
 });
 
-$limit.reset(PostsGate.close);
-$films.reset(PostsGate.close);
-
-$films.watch((state) => {
-  console.info(state);
-});
+$size.reset(EffectorGate.close);
+$viewer.reset(EffectorGate.close);

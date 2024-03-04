@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import { Effector } from '@features/effector';
+import { Effector } from '@features/effector';
 
 import { ref } from 'vue';
 
@@ -10,9 +10,9 @@ const open = ref(true);
 
 <template>
   <div
-    class="flex h-screen w-screen flex-col items-center justify-center text-violet-700"
+    class="flex h-screen w-screen flex-col items-center justify-center gap-4 text-violet-700"
   >
-    <Button @click="open = !open" />
-    <!-- <Effector v-if="open" /> -->
+    <Button @click="open = !open">{{ open ? 'Close' : 'Open' }}</Button>
+    <Effector v-if="open" />
   </div>
 </template>

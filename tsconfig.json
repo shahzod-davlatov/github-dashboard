@@ -27,6 +27,7 @@
       "@entities/*": ["./src/entities/*"],
       "@ui/*": ["./src/shared/ui/*"],
       "@constants/*": ["./src/shared/constants/*"],
+      "@api": ["./src/shared/api/index.ts"],
       "@graphql": ["./src/shared/graphql/index.ts"],
       "@shadcn": ["./src/shared/shadcn/index.ts"],
       "@shadcn/lib": ["./src/shared/shadcn/lib.ts"]
