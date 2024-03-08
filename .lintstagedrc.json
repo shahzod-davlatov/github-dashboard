@@ -1,5 +1,0 @@
-{
-  "*": "prettier . --write",
-  "*{ts,vue}": ["eslint --ext .ts,.vue src --fix"],
-  "*{css,vue}": "stylelint '**/*.{css,vue}' --fix"
-}

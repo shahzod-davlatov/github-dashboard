@@ -9,6 +9,7 @@
     "plugin:tailwindcss/recommended",
     "plugin:effector/recommended",
     "plugin:vue/vue3-recommended",
+    "plugin:oxlint/recommended",
     "prettier"
   ],
   "plugins": ["effector"],
