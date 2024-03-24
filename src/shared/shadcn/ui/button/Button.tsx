@@ -53,9 +53,13 @@ type Props = PrimitiveProps & {
   disabled?: ButtonHTMLAttributes['disabled'];
 };
 
+type Emits = {
+  click?: ButtonHTMLAttributes['onClick'];
+};
+
 type Slots = SlotsType<{ default: () => VNode[] }>;
 
-export const Button = defineComponent<Props, {}, string, Slots>(
+export const Button = defineComponent<Props, Emits, string, Slots>(
   (props, { slots }) => {
     return () => (
       <Primitive
