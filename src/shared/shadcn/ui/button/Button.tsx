@@ -45,13 +45,13 @@ const buttonVariants = cva(
 
 type ButtonVariants = VariantProps<typeof buttonVariants>;
 
-type Props = PrimitiveProps &
-  ButtonHTMLAttributes & {
-    variant?: ButtonVariants['variant'];
-    size?: ButtonVariants['size'];
-    as?: string;
-    class?: HTMLAttributes['class'];
-  };
+type Props = PrimitiveProps & {
+  variant?: ButtonVariants['variant'];
+  size?: ButtonVariants['size'];
+  as?: string;
+  class?: HTMLAttributes['class'];
+  disabled?: ButtonHTMLAttributes['disabled'];
+};
 
 type Slots = SlotsType<{ default: () => VNode[] }>;
 
@@ -69,5 +69,8 @@ export const Button = defineComponent<Props, {}, string, Slots>(
         {slots.default()}
       </Primitive>
     );
+  },
+  {
+    props: ['variant', 'size', 'as', 'asChild', 'class', 'disabled'],
   }
 );
