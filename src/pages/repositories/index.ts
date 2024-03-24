@@ -1,3 +1,1 @@
-import PageRepositories from './ui/PageRepositories.vue';
-
-export { PageRepositories };
+export { Repositories } from './ui/Repositories';

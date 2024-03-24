@@ -1,5 +1,5 @@
 export default {
   '*': 'npm run format',
-  '*.{ts,vue}': [() => 'npm run type-check', 'npm run lint:code'],
-  '*{css,vue}': 'npm run lint:style',
+  '*.{ts,tsx,vue}': [() => 'yarn run', 'yarn run lint:code'],
+  '*{css,vue}': 'yarn run lint:style',
 };

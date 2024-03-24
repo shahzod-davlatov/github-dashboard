@@ -5,7 +5,7 @@ module.exports = {
   darkMode: ['class'],
   safelist: ['dark'],
 
-  content: ['./index.html', './src/**/*.{vue,ts}'],
+  content: ['./index.html', './src/**/*.{vue,ts,tsx}'],
 
   theme: {
     container: {

@@ -1,3 +1,1 @@
-import HeaderNavigation from './ui/HeaderNavigation.vue';
-
-export { HeaderNavigation };
+export { HeaderNavigation } from './ui/HeaderNavigation';

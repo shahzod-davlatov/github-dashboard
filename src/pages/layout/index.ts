@@ -1,3 +1,1 @@
-import PageLayout from './ui/PageLayout.vue';
-
-export { PageLayout };
+export { Layout } from './ui/Layout';

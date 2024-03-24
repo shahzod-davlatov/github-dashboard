@@ -1,3 +1,1 @@
-import NavigationButton from './ui/NavigationButton.vue';
-
-export { NavigationButton };
+export { NavigationButton } from './ui/NavigationButton';

@@ -1,9 +1,13 @@
 import path from 'path';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), vueJsx()],
+  define: {
+    __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
+  },
   resolve: {
     alias: {
       '@pages': path.resolve(__dirname, './src/pages'),

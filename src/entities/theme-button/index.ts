@@ -1,3 +1,1 @@
-import ThemeButton from './ui/ThemeButton.vue';
-
-export { ThemeButton };
+export { ThemeButton } from './ui/ThemeButton';

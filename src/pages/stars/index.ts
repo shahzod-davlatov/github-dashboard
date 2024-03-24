@@ -1,3 +1,1 @@
-import PageStars from './ui/PageStars.vue';
-
-export { PageStars };
+export { Stars } from './ui/Stars';
