@@ -2,7 +2,7 @@ import { Effector } from '@features/effector';
 
 import { defineComponent, ref } from 'vue';
 
-import { Button } from '@shadcn';
+import { Button } from '@shadcn/button';
 
 export const Home = defineComponent(() => {
   const open = ref(true);

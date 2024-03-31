@@ -1,6 +1,7 @@
+import { cn } from '../../lib';
+
 import { defineComponent } from 'vue';
 
-import { cn } from '@shadcn/lib';
 import { cva } from 'class-variance-authority';
 import { Primitive } from 'radix-vue';
 
@@ -59,7 +60,7 @@ type Emits = {
 
 type Slots = SlotsType<{ default: () => VNode[] }>;
 
-export const Button = defineComponent<Props, Emits, string, Slots>(
+export const Button = defineComponent<Props, Emits, 'click', Slots>(
   (props, { slots }) => {
     return () => (
       <Primitive

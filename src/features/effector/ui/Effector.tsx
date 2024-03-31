@@ -15,7 +15,8 @@ import { useStore, useUnit, useGate } from 'effector-vue/composition';
 
 import { Loader2 } from 'lucide-vue-next';
 
-import { Button, Card, CardHeader, CardTitle, CardContent } from '@shadcn';
+import { Button } from '@shadcn/button';
+import { Card, CardHeader, CardTitle, CardContent } from '@shadcn/card';
 
 export const Effector = defineComponent(() => {
   const viewer = useStore($viewer);

@@ -10,9 +10,8 @@ import { whenever } from '@vueuse/core';
 
 import { Loader2 } from 'lucide-vue-next';
 
-import { Button } from '@shadcn';
-
 import { GithubLogoIcon } from '@radix-icons/vue';
+import { Button } from '@shadcn/button';
 
 type AuthResponse = {
   access_token: string;

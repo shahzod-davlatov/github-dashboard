@@ -1,10 +1,9 @@
 import path from 'path';
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 
 export default defineConfig({
-  plugins: [vue(), vueJsx()],
+  plugins: [vueJsx()],
   define: {
     __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
   },
@@ -17,7 +16,7 @@ export default defineConfig({
       '@api': path.resolve(__dirname, './src/shared/api'),
       '@constants': path.resolve(__dirname, './src/shared/constants'),
       '@graphql': path.resolve(__dirname, './src/shared/graphql'),
-      '@shadcn': path.resolve(__dirname, './src/shared/shadcn'),
+      '@shadcn': path.resolve(__dirname, './src/shared/shadcn/ui'),
     },
   },
 });

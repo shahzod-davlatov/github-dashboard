@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue';
 import { RouterLink } from 'vue-router';
 
-import { Button } from '@shadcn';
+import { Button } from '@shadcn/button';
 
 import type { SlotsType, VNode } from 'vue';
 import type { RouterLinkProps } from 'vue-router';

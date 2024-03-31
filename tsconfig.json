@@ -30,10 +30,9 @@
       "@constants/*": ["./src/shared/constants/*"],
       "@api": ["./src/shared/api/index.ts"],
       "@graphql": ["./src/shared/graphql/index.ts"],
-      "@shadcn": ["./src/shared/shadcn/index.ts"],
-      "@shadcn/lib": ["./src/shared/shadcn/lib.ts"]
+      "@shadcn/*": ["./src/shared/shadcn/ui/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "./codegen.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "./codegen.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

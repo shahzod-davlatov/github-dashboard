@@ -2,7 +2,7 @@ import { defineComponent } from 'vue';
 
 import { useDark, useToggle } from '@vueuse/core';
 
-import { Button } from '@shadcn';
+import { Button } from '@shadcn/button';
 
 export const ThemeButton = defineComponent(() => {
   const isDark = useDark();
