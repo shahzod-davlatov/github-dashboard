@@ -1,8 +1,8 @@
-import { GITHUB_LINK } from '@constants/links';
-
 import { defineComponent } from 'vue';
 
 import { Button } from '@shadcn/button';
+
+import { GITHUB_LINK } from '@constants/links';
 
 export const GithubButton = defineComponent(() => {
   return () => (

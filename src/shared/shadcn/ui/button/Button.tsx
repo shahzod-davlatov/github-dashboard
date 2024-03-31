@@ -1,9 +1,9 @@
-import { cn } from '../../lib';
-
 import { defineComponent } from 'vue';
 
 import { cva } from 'class-variance-authority';
 import { Primitive } from 'radix-vue';
+
+import { cn } from '../../lib';
 
 import type { VariantProps } from 'class-variance-authority';
 import type { PrimitiveProps } from 'radix-vue';
@@ -64,8 +64,8 @@ export const Button = defineComponent<Props, Emits, 'click', Slots>(
   (props, { slots }) => {
     return () => (
       <Primitive
+        {...props}
         as={props.as ?? 'button'}
-        as-child={props.asChild}
         class={cn(
           buttonVariants({ variant: props.variant, size: props.size }),
           props.class

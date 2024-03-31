@@ -1,10 +1,7 @@
-import { GITHUB_AUTHORIZE_ENDPOINT } from '@constants/api';
-import { AppRoutes } from '@constants/routes';
-import { authToken } from '@constants/tokens';
-
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { toast } from 'vue-sonner';
 
 import { whenever } from '@vueuse/core';
 
@@ -12,6 +9,10 @@ import { Loader2 } from 'lucide-vue-next';
 
 import { GithubLogoIcon } from '@radix-icons/vue';
 import { Button } from '@shadcn/button';
+
+import { GITHUB_AUTHORIZE_ENDPOINT } from '@constants/api';
+import { AppRoutes } from '@constants/routes';
+import { authToken } from '@constants/tokens';
 
 type AuthResponse = {
   access_token: string;
@@ -27,6 +28,8 @@ url.searchParams.set('allow_signup', 'false');
 export const Auth = defineComponent(() => {
   const router = useRouter();
   const route = useRoute();
+
+  const githubLink = ref<HTMLLinkElement>();
 
   const code = computed(() => {
     if (typeof route.query.code === 'string') {
@@ -56,7 +59,14 @@ export const Auth = defineComponent(() => {
         })
         .catch(() => {
           authToken.value = null;
-          void router.push({ name: AppRoutes.Auth });
+          toast('Something went wrong', {
+            action: {
+              label: 'Try again',
+              onClick: () => {
+                githubLink.value?.click();
+              },
+            },
+          });
         });
     },
     { immediate: true }
@@ -64,19 +74,26 @@ export const Auth = defineComponent(() => {
 
   return () => (
     <div class="flex h-dvh w-dvw items-center justify-center">
-      {code.value ? (
-        <Button size="lg" disabled>
-          <Loader2 class="mr-2 size-4 animate-spin" />
-          Please wait
-        </Button>
-      ) : (
-        <Button size="lg" as-child>
-          <a href={url.toString()} target="_self">
-            <GithubLogoIcon class="mr-2 size-4" />
-            Continue with GitHub
-          </a>
-        </Button>
-      )}
+      <Button size="lg" disabled={Boolean(code.value)}>
+        <a
+          href={url.toString()}
+          target="_self"
+          class="flex items-center"
+          ref={githubLink}
+        >
+          {code.value ? (
+            <>
+              <Loader2 class="mr-2 size-4 animate-spin" />
+              Please wait
+            </>
+          ) : (
+            <>
+              <GithubLogoIcon class="mr-2 size-4" />
+              Continue with GitHub
+            </>
+          )}
+        </a>
+      </Button>
     </div>
   );
 });

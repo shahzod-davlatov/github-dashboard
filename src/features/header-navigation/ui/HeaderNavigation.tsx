@@ -1,9 +1,9 @@
+import { defineComponent, computed } from 'vue';
+import { useRoute } from 'vue-router';
+
 import { NavigationButton } from '@ui/navigation-button';
 
 import { AppRoutes } from '@constants/routes';
-
-import { defineComponent, computed } from 'vue';
-import { useRoute } from 'vue-router';
 
 export const HeaderNavigation = defineComponent(() => {
   const route = useRoute();

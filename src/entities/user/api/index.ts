@@ -2,17 +2,16 @@ import { client } from '@api';
 
 import { graphql } from '@graphql';
 
-export const effectorRequest = (size: number) =>
+export const userRequest = () =>
   client.value.request(
     graphql(`
-      query Viewer($size: Int) {
+      query User {
         viewer {
           id
           name
           login
-          avatarUrl(size: $size)
+          avatarUrl
         }
       }
-    `),
-    { size }
+    `)
   );

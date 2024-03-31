@@ -1,6 +1,6 @@
-import { cn } from '../../lib';
-
 import { defineComponent } from 'vue';
+
+import { cn } from '../../lib';
 
 import type { HTMLAttributes, SlotsType, VNode } from 'vue';
 

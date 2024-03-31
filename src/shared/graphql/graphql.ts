@@ -30705,11 +30705,9 @@ export type WorkflowsParametersInput = {
   workflows: Array<WorkflowFileReferenceInput>;
 };
 
-export type ViewerQueryVariables = Exact<{
-  size?: InputMaybe<Scalars['Int']['input']>;
-}>;
+export type UserQueryVariables = Exact<{ [key: string]: never }>;
 
-export type ViewerQuery = {
+export type UserQuery = {
   __typename?: 'Query';
   viewer: {
     __typename?: 'User';
@@ -30720,20 +30718,13 @@ export type ViewerQuery = {
   };
 };
 
-export const ViewerDocument = {
+export const UserDocument = {
   kind: 'Document',
   definitions: [
     {
       kind: 'OperationDefinition',
       operation: 'query',
-      name: { kind: 'Name', value: 'Viewer' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'size' } },
-          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Int' } },
-        },
-      ],
+      name: { kind: 'Name', value: 'User' },
       selectionSet: {
         kind: 'SelectionSet',
         selections: [
@@ -30746,20 +30737,7 @@ export const ViewerDocument = {
                 { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'name' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'login' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'avatarUrl' },
-                  arguments: [
-                    {
-                      kind: 'Argument',
-                      name: { kind: 'Name', value: 'size' },
-                      value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'size' },
-                      },
-                    },
-                  ],
-                },
+                { kind: 'Field', name: { kind: 'Name', value: 'avatarUrl' } },
               ],
             },
           },
@@ -30767,4 +30745,4 @@ export const ViewerDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<ViewerQuery, ViewerQueryVariables>;
+} as unknown as DocumentNode<UserQuery, UserQueryVariables>;

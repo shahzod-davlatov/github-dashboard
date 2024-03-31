@@ -54,12 +54,13 @@
           "caseInsensitive": true
         },
         "groups": [
-          "index",
-          "sibling",
-          "parent",
-          "internal",
-          "external",
           "builtin",
+          "external",
+          "internal",
+          "unknown",
+          "parent",
+          "sibling",
+          "index",
           "object",
           "type"
         ],

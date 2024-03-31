@@ -1,3 +1,5 @@
+import { createRouter, createWebHistory } from 'vue-router';
+
 import { Auth } from '@pages/auth';
 import { Home } from '@pages/home';
 import { Repositories } from '@pages/repositories';
@@ -5,8 +7,6 @@ import { Stars } from '@pages/stars';
 
 import { AppRoutes } from '@constants/routes';
 import { authToken } from '@constants/tokens';
-
-import { createRouter, createWebHistory } from 'vue-router';
 
 import type { RouteRecordRaw } from 'vue-router';
 
