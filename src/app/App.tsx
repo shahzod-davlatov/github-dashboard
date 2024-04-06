@@ -4,14 +4,14 @@ import { Toaster } from 'vue-sonner';
 
 import { Layout } from '@pages/layout';
 
-import { AppRoutes } from '@constants/routes';
+import { APP_ROUTES } from '@constants/routes';
 
 export const App = defineComponent(() => {
   const route = useRoute();
 
   return () => (
     <>
-      {route.name !== AppRoutes.Auth ? (
+      {route.name !== APP_ROUTES.AUTH ? (
         <Layout>
           <RouterView />
         </Layout>

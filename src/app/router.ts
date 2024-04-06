@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
+import { authToken } from '@localStorages/tokens';
+
 import { Auth } from '@pages/auth';
 import { Home } from '@pages/home';
 import { Repositories } from '@pages/repositories';
 import { Stars } from '@pages/stars';
 
-import { AppRoutes } from '@constants/routes';
-import { authToken } from '@constants/tokens';
+import { APP_ROUTES } from '@constants/routes';
 
 import { routerInstance } from '@lib/router';
 
@@ -16,22 +17,22 @@ const routes: Readonly<RouteRecordRaw[]> = [
   {
     path: '/',
     component: Home,
-    name: AppRoutes.Home,
+    name: APP_ROUTES.HOME,
   },
   {
     path: '/auth',
     component: Auth,
-    name: AppRoutes.Auth,
+    name: APP_ROUTES.AUTH,
   },
   {
     path: '/repositories',
     component: Repositories,
-    name: AppRoutes.Repositories,
+    name: APP_ROUTES.REPOSITORIES,
   },
   {
     path: '/stars',
     component: Stars,
-    name: AppRoutes.Stars,
+    name: APP_ROUTES.STARS,
   },
 ];
 
@@ -41,8 +42,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
-  if (!authToken.value && to.name !== AppRoutes.Auth) {
-    return { name: AppRoutes.Auth };
+  if (!authToken.value && to.name !== APP_ROUTES.AUTH) {
+    return { name: APP_ROUTES.AUTH };
   }
 });
 

@@ -6,9 +6,10 @@ import { whenever } from '@vueuse/core';
 
 import Button from 'primevue/button';
 
+import { authToken } from '@localStorages/tokens';
+
 import { GITHUB_AUTHORIZE_ENDPOINT } from '@constants/api';
-import { AppRoutes } from '@constants/routes';
-import { authToken } from '@constants/tokens';
+import { APP_ROUTES } from '@constants/routes';
 
 import { errorToast } from '@lib/sonner';
 
@@ -57,12 +58,12 @@ export const Auth = defineComponent(() => {
         })
         .then((data: AuthResponse) => {
           authToken.value = data.access_token;
-          void router.push({ name: AppRoutes.Home });
+          void router.push({ name: APP_ROUTES.HOME });
         })
         .catch(() => {
           authToken.value = null;
           errorToast('Something went wrong');
-          void router.push({ name: AppRoutes.Auth });
+          void router.push({ name: APP_ROUTES.AUTH });
         });
     },
     { immediate: true }

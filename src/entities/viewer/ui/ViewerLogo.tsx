@@ -6,16 +6,16 @@ import { useQuery } from '@tanstack/vue-query';
 
 import { useGate, useStore } from 'effector-vue/composition';
 
-import { $user, UserGate, fetchUserFx } from '../model';
+import { $viewer, ViewerGate, fetchViewerFx } from '../model';
 
-export const UserLogo = defineComponent(() => {
-  const user = useStore($user);
+export const ViewerLogo = defineComponent(() => {
+  const user = useStore($viewer);
 
-  useGate(UserGate, () => ({ id: 'User' }));
+  useGate(ViewerGate, () => ({ id: 'Viewer' }));
 
   useQuery({
-    queryKey: ['user'],
-    queryFn: () => fetchUserFx(),
+    queryKey: ['viewer'],
+    queryFn: () => fetchViewerFx(),
   });
 
   return () => (

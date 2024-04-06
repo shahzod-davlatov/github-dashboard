@@ -11,8 +11,8 @@ import type { SlotsType, VNode } from 'vue';
 
 type Slots = SlotsType<{ default: () => VNode[] }>;
 
-const AsyncUserLogo = defineAsyncComponent(() =>
-  import('@entities/user').then((module) => module.UserLogo)
+const AsyncViewerLogo = defineAsyncComponent(() =>
+  import('@entities/viewer').then((module) => module.ViewerLogo)
 );
 
 export const Layout = defineComponent<{}, {}, string, Slots>((_, { slots }) => {
@@ -25,7 +25,7 @@ export const Layout = defineComponent<{}, {}, string, Slots>((_, { slots }) => {
           <ThemeButton />
           <Suspense>
             {{
-              default: () => <AsyncUserLogo />,
+              default: () => <AsyncViewerLogo />,
               fallback: () => <Skeleton shape="circle" size="2rem" />,
             }}
           </Suspense>

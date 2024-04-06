@@ -1,10 +1,10 @@
 import { computed } from 'vue';
 
+import { authToken } from '@localStorages/tokens';
 import { GraphQLClient } from 'graphql-request';
 
 import { GRAPHQL_ENDPOINT } from '@constants/api';
-import { AppRoutes } from '@constants/routes';
-import { authToken } from '@constants/tokens';
+import { APP_ROUTES } from '@constants/routes';
 
 import { routerInstance } from '@lib/router';
 import { errorToast } from '@lib/sonner';
@@ -20,7 +20,7 @@ export const client = computed(
         ) {
           authToken.value = null;
           errorToast('Access error');
-          void routerInstance.value?.push({ name: AppRoutes.Auth });
+          void routerInstance.value?.push({ name: APP_ROUTES.AUTH });
         }
       },
     })

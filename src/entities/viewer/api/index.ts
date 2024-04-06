@@ -2,10 +2,10 @@ import { client } from '@api';
 
 import { graphql } from '@graphql';
 
-export const userRequest = () =>
+export const viewerRequest = () =>
   client.value.request(
     graphql(`
-      query User {
+      query Viewer {
         viewer {
           id
           name

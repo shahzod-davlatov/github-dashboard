@@ -3,7 +3,7 @@ import { useRoute } from 'vue-router';
 
 import { NavigationButton } from '@ui/navigation-button';
 
-import { AppRoutes } from '@constants/routes';
+import { APP_ROUTES } from '@constants/routes';
 
 export const HeaderNavigation = defineComponent(() => {
   const route = useRoute();
@@ -11,20 +11,20 @@ export const HeaderNavigation = defineComponent(() => {
   const navigationMap = computed(() => [
     {
       id: 'overview',
-      isCurrent: route.name === AppRoutes.Home,
-      to: { name: AppRoutes.Home },
+      isCurrent: route.name === APP_ROUTES.HOME,
+      to: { name: APP_ROUTES.HOME },
       title: 'Overview',
     },
     {
       id: 'repositories',
-      isCurrent: route.name === AppRoutes.Repositories,
-      to: { name: AppRoutes.Repositories },
+      isCurrent: route.name === APP_ROUTES.REPOSITORIES,
+      to: { name: APP_ROUTES.REPOSITORIES },
       title: 'Repositories',
     },
     {
       id: 'stars',
-      isCurrent: route.name === AppRoutes.Stars,
-      to: { name: AppRoutes.Stars },
+      isCurrent: route.name === APP_ROUTES.STARS,
+      to: { name: APP_ROUTES.STARS },
       title: 'Stars',
     },
   ]);
