@@ -2,7 +2,7 @@ import { defineComponent } from 'vue';
 
 import { useDark, useToggle } from '@vueuse/core';
 
-import { Button } from '@shadcn/button';
+import Button from 'primevue/button';
 
 export const ThemeButton = defineComponent(() => {
   const isDark = useDark();
@@ -13,7 +13,7 @@ export const ThemeButton = defineComponent(() => {
   };
 
   return () => (
-    <Button size="icon" variant="ghost" onClick={handleClick}>
+    <Button text onClick={handleClick}>
       {isDark.value ? (
         <svg
           class="size-5"

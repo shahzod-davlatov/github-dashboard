@@ -77,6 +77,11 @@
             "position": "before"
           },
           {
+            "pattern": "primevue/**",
+            "group": "external",
+            "position": "before"
+          },
+          {
             "pattern": "@tanstack/**",
             "group": "external",
             "position": "before"
@@ -88,16 +93,6 @@
           },
           {
             "pattern": "effector-vue/composition",
-            "group": "external",
-            "position": "before"
-          },
-          {
-            "pattern": "lucide-vue-next",
-            "group": "external",
-            "position": "before"
-          },
-          {
-            "pattern": "@shadcn",
             "group": "external",
             "position": "before"
           },

@@ -7,6 +7,12 @@ const config: CodegenConfig = {
   generates: {
     './src/shared/graphql/': {
       preset: 'client',
+      config: {
+        skipTypename: true,
+        scalars: {
+          URI: 'string',
+        },
+      },
     },
   },
 };

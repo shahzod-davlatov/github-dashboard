@@ -1,12 +1,12 @@
 import { defineComponent } from 'vue';
 
-import { Button } from '@shadcn/button';
+import Button from 'primevue/button';
 
 import { GITHUB_LINK } from '@constants/links';
 
 export const GithubButton = defineComponent(() => {
   return () => (
-    <Button size="icon" variant="ghost" as-child>
+    <Button text>
       <a href={GITHUB_LINK} target="_blank" rel="noreferrer">
         <svg
           class="size-5"

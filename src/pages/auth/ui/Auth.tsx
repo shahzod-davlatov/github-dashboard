@@ -5,10 +5,7 @@ import { toast } from 'vue-sonner';
 
 import { whenever } from '@vueuse/core';
 
-import { Loader2 } from 'lucide-vue-next';
-
-import { GithubLogoIcon } from '@radix-icons/vue';
-import { Button } from '@shadcn/button';
+import Button from 'primevue/button';
 
 import { GITHUB_AUTHORIZE_ENDPOINT } from '@constants/api';
 import { AppRoutes } from '@constants/routes';
@@ -39,6 +36,10 @@ export const Auth = defineComponent(() => {
     return null;
   });
 
+  const handleClick = () => {
+    githubLink.value?.click();
+  };
+
   whenever(
     code,
     (codeValue) => {
@@ -59,14 +60,15 @@ export const Auth = defineComponent(() => {
         })
         .catch(() => {
           authToken.value = null;
-          toast('Something went wrong', {
-            action: {
-              label: 'Try again',
-              onClick: () => {
-                githubLink.value?.click();
-              },
+          toast.error('Something went wrong', {
+            position: 'bottom-right',
+            style: {
+              background: '#fda4af',
+              color: '#e60000',
+              border: '#fda4af',
             },
           });
+          void router.push({ name: AppRoutes.Auth });
         });
     },
     { immediate: true }
@@ -74,26 +76,14 @@ export const Auth = defineComponent(() => {
 
   return () => (
     <div class="flex h-dvh w-dvw items-center justify-center">
-      <Button size="lg" disabled={Boolean(code.value)}>
-        <a
-          href={url.toString()}
-          target="_self"
-          class="flex items-center"
-          ref={githubLink}
-        >
-          {code.value ? (
-            <>
-              <Loader2 class="mr-2 size-4 animate-spin" />
-              Please wait
-            </>
-          ) : (
-            <>
-              <GithubLogoIcon class="mr-2 size-4" />
-              Continue with GitHub
-            </>
-          )}
-        </a>
-      </Button>
+      <Button
+        icon="pi pi-github"
+        disabled={Boolean(code.value)}
+        loading={Boolean(code.value)}
+        label={code.value ? 'Please wait' : 'Continue with GitHub'}
+        onClick={handleClick}
+      />
+      <a href={url.toString()} target="_self" class="hidden" ref={githubLink} />
     </div>
   );
 });

@@ -1,7 +1,6 @@
 import { defineComponent } from 'vue';
 import { RouterView, useRoute } from 'vue-router';
-
-import { Sonner } from '@shadcn/sonner';
+import { Toaster } from 'vue-sonner';
 
 import { Layout } from '@pages/layout';
 
@@ -19,7 +18,7 @@ export const App = defineComponent(() => {
       ) : (
         <RouterView />
       )}
-      <Sonner />
+      <Toaster />
     </>
   );
 });

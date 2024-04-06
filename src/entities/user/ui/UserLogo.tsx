@@ -1,12 +1,10 @@
 import { defineComponent } from 'vue';
 
+import Avatar from 'primevue/avatar';
+
 import { useQuery } from '@tanstack/vue-query';
 
 import { useGate, useStore } from 'effector-vue/composition';
-
-import { Avatar, AvatarImage, AvatarFallback } from '@shadcn/avatar';
-import { Button } from '@shadcn/button';
-import { DropdownMenu, DropdownMenuTrigger } from '@shadcn/dropdown-menu';
 
 import { $user, UserGate, fetchUserFx } from '../model';
 
@@ -21,15 +19,10 @@ export const UserLogo = defineComponent(() => {
   });
 
   return () => (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" class="relative size-8 rounded-full">
-          <Avatar class="size-8">
-            <AvatarImage src={user.value?.avatarUrl} />
-            <AvatarFallback>YOU</AvatarFallback>
-          </Avatar>
-        </Button>
-      </DropdownMenuTrigger>
-    </DropdownMenu>
+    <Avatar
+      image={user.value?.avatarUrl}
+      shape="circle"
+      label={user.value?.avatarUrl ? undefined : 'YOU'}
+    />
   );
 });

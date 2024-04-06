@@ -29,8 +29,7 @@
       "@ui/*": ["./src/shared/ui/*"],
       "@constants/*": ["./src/shared/constants/*"],
       "@api": ["./src/shared/api/index.ts"],
-      "@graphql": ["./src/shared/graphql/index.ts"],
-      "@shadcn/*": ["./src/shared/shadcn/ui/*"]
+      "@graphql": ["./src/shared/graphql/index.ts"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "./codegen.ts"],

@@ -4,10 +4,7 @@ import { createGate } from 'effector-vue/composition';
 
 import { userRequest } from '../api';
 
-export type User = Omit<
-  Awaited<ReturnType<typeof userRequest>>['viewer'],
-  '__typename'
->;
+export type User = Awaited<ReturnType<typeof userRequest>>['viewer'];
 
 export const UserGate = createGate({ name: 'User' });
 
