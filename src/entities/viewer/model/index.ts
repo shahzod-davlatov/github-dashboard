@@ -1,12 +1,12 @@
-import { createEffect, createStore } from 'effector';
+import { createEffect, createStore, sample } from 'effector';
 
-import { createGate } from 'effector-vue/composition';
+import { userLogin } from '@localStorages/user';
+
+import { $userLogin } from '@entities/user';
 
 import { viewerRequest } from '../api';
 
 export type Viewer = Awaited<ReturnType<typeof viewerRequest>>['viewer'];
-
-export const ViewerGate = createGate({ name: 'Viewer' });
 
 export const fetchViewerFx = createEffect(async () => {
   const { viewer } = await viewerRequest();
@@ -16,7 +16,11 @@ export const fetchViewerFx = createEffect(async () => {
 
 export const $viewer = createStore<Viewer | null>(null).on(
   fetchViewerFx.doneData,
-  (_, user) => user
+  (_, viewer) => viewer
 );
 
-$viewer.reset(ViewerGate.close);
+sample({
+  source: $viewer,
+  fn: (viewer) => viewer?.login ?? userLogin.value,
+  target: $userLogin,
+});

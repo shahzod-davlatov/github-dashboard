@@ -2,16 +2,18 @@ import { client } from '@api';
 
 import { graphql } from '@graphql';
 
-export const viewerRequest = () =>
+export const userRequest = (login: string) =>
   client.request(
     graphql(`
-      query Viewer {
-        viewer {
+      query User($login: String!) {
+        user(login: $login) {
           id
           name
           login
+          url
           avatarUrl
         }
       }
-    `)
+    `),
+    { login }
   );

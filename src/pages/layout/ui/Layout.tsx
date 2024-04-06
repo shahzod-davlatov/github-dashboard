@@ -3,6 +3,7 @@ import { defineComponent, defineAsyncComponent, Suspense } from 'vue';
 import Skeleton from 'primevue/skeleton';
 
 import { HeaderNavigation } from '@features/header-navigation';
+import { UserSelect } from '@features/user-select';
 
 import { GithubButton } from '@ui/github-button';
 import { ThemeButton } from '@ui/theme-button';
@@ -18,7 +19,8 @@ const AsyncViewerLogo = defineAsyncComponent(() =>
 export const Layout = defineComponent<{}, {}, string, Slots>((_, { slots }) => {
   return () => (
     <>
-      <header class="flex items-center gap-6 border-b border-surface-200 p-4 dark:border-surface-700">
+      <header class="flex items-center gap-4 border-b border-surface-200 p-4 dark:border-surface-700">
+        <UserSelect />
         <HeaderNavigation />
         <div class="ml-auto flex items-center gap-2">
           <GithubButton />

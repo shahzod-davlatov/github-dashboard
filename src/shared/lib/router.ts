@@ -1,5 +1,5 @@
-import { ref } from 'vue';
-
 import type { Router } from 'vue-router';
 
-export const routerInstance = ref<Router>();
+export const routerInstance: { instance: Router | null } = {
+  instance: null,
+};

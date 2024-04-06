@@ -4,25 +4,27 @@ import Avatar from 'primevue/avatar';
 
 import { useQuery } from '@tanstack/vue-query';
 
-import { useGate, useStore } from 'effector-vue/composition';
+import { useStore } from 'effector-vue/composition';
 
-import { $viewer, ViewerGate, fetchViewerFx } from '../model';
+import { VIEWER_QUERY_KEY } from '@constants/queryKeys';
+
+import { $viewer, fetchViewerFx } from '../model';
 
 export const ViewerLogo = defineComponent(() => {
-  const user = useStore($viewer);
-
-  useGate(ViewerGate, () => ({ id: 'Viewer' }));
+  const viewer = useStore($viewer);
 
   useQuery({
-    queryKey: ['viewer'],
+    queryKey: [VIEWER_QUERY_KEY],
     queryFn: () => fetchViewerFx(),
+    enabled: () => !viewer.value,
   });
 
   return () => (
     <Avatar
-      image={user.value?.avatarUrl}
+      image={viewer.value?.avatarUrl}
       shape="circle"
-      label={user.value?.avatarUrl ? undefined : 'YOU'}
+      label={viewer.value?.avatarUrl ? undefined : 'YOU'}
+      size="large"
     />
   );
 });

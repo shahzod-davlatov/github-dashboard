@@ -30,7 +30,7 @@ export const HeaderNavigation = defineComponent(() => {
   ]);
 
   return () => (
-    <nav class="flex gap-6">
+    <nav class="flex gap-4">
       {navigationMap.value.map((navigation) => (
         <NavigationButton
           key={navigation.id}

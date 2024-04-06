@@ -1,5 +1,5 @@
 import { useLocalStorage } from '@vueuse/core';
 
-import { CURRENT_USER_ID } from '@constants/storageKeys';
+import { USER_LOGIN } from '@constants/storageKeys';
 
-export const currentUserId = useLocalStorage<string>(CURRENT_USER_ID, null);
+export const userLogin = useLocalStorage<string | null>(USER_LOGIN, null);

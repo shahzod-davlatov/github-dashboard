@@ -47,6 +47,6 @@ router.beforeEach((to) => {
   }
 });
 
-routerInstance.value = router;
+routerInstance.instance = router;
 
 export { router };

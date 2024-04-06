@@ -23,8 +23,8 @@ export const avatar = {
 
       // Sizes
       {
-        'h-8 w-8': props.size == null || props.size == 'normal',
-        'w-12 h-12': props.size == 'large',
+        'h-5 w-5': props.size == null || props.size == 'normal',
+        'w-8 h-8': props.size == 'large',
         'w-16 h-16': props.size == 'xlarge',
       },
       { '-ml-4': parent.instance.$style?.name == 'avatargroup' },

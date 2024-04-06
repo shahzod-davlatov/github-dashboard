@@ -13,8 +13,12 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+  '\n      query User($login: String!) {\n        user(login: $login) {\n          id\n          name\n          login\n          url\n          avatarUrl\n        }\n      }\n    ':
+    types.UserDocument,
   '\n      query Viewer {\n        viewer {\n          id\n          name\n          login\n          avatarUrl\n        }\n      }\n    ':
     types.ViewerDocument,
+  '\n      query UserSearch($query: String!) {\n        search(query: $query, type: USER, first: 10) {\n          nodes {\n            ... on User {\n              name\n              login\n              id\n              avatarUrl\n            }\n          }\n        }\n      }\n    ':
+    types.UserSearchDocument,
 };
 
 /**
@@ -35,8 +39,20 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+  source: '\n      query User($login: String!) {\n        user(login: $login) {\n          id\n          name\n          login\n          url\n          avatarUrl\n        }\n      }\n    '
+): (typeof documents)['\n      query User($login: String!) {\n        user(login: $login) {\n          id\n          name\n          login\n          url\n          avatarUrl\n        }\n      }\n    '];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
   source: '\n      query Viewer {\n        viewer {\n          id\n          name\n          login\n          avatarUrl\n        }\n      }\n    '
 ): (typeof documents)['\n      query Viewer {\n        viewer {\n          id\n          name\n          login\n          avatarUrl\n        }\n      }\n    '];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n      query UserSearch($query: String!) {\n        search(query: $query, type: USER, first: 10) {\n          nodes {\n            ... on User {\n              name\n              login\n              id\n              avatarUrl\n            }\n          }\n        }\n      }\n    '
+): (typeof documents)['\n      query UserSearch($query: String!) {\n        search(query: $query, type: USER, first: 10) {\n          nodes {\n            ... on User {\n              name\n              login\n              id\n              avatarUrl\n            }\n          }\n        }\n      }\n    '];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
