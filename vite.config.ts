@@ -15,6 +15,7 @@ export default defineConfig({
       '@ui': path.resolve(__dirname, './src/shared/ui'),
       '@api': path.resolve(__dirname, './src/shared/api'),
       '@constants': path.resolve(__dirname, './src/shared/constants'),
+      '@lib': path.resolve(__dirname, './src/shared/lib'),
       '@graphql': path.resolve(__dirname, './src/shared/graphql'),
     },
   },

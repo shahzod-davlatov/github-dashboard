@@ -1,8 +1,8 @@
-import { defineComponent } from 'vue';
+import { defineComponent, defineAsyncComponent, Suspense } from 'vue';
+
+import Skeleton from 'primevue/skeleton';
 
 import { HeaderNavigation } from '@features/header-navigation';
-
-import { UserLogo } from '@entities/user';
 
 import { GithubButton } from '@ui/github-button';
 import { ThemeButton } from '@ui/theme-button';
@@ -10,6 +10,10 @@ import { ThemeButton } from '@ui/theme-button';
 import type { SlotsType, VNode } from 'vue';
 
 type Slots = SlotsType<{ default: () => VNode[] }>;
+
+const AsyncUserLogo = defineAsyncComponent(() =>
+  import('@entities/user').then((module) => module.UserLogo)
+);
 
 export const Layout = defineComponent<{}, {}, string, Slots>((_, { slots }) => {
   return () => (
@@ -19,7 +23,12 @@ export const Layout = defineComponent<{}, {}, string, Slots>((_, { slots }) => {
         <div class="ml-auto flex items-center gap-2">
           <GithubButton />
           <ThemeButton />
-          <UserLogo />
+          <Suspense>
+            {{
+              default: () => <AsyncUserLogo />,
+              fallback: () => <Skeleton shape="circle" size="2rem" />,
+            }}
+          </Suspense>
         </div>
       </header>
       <main class="grow">{slots.default()}</main>

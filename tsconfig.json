@@ -28,6 +28,7 @@
       "@entities/*": ["./src/entities/*"],
       "@ui/*": ["./src/shared/ui/*"],
       "@constants/*": ["./src/shared/constants/*"],
+      "@lib/*": ["./src/shared/lib/*"],
       "@api": ["./src/shared/api/index.ts"],
       "@graphql": ["./src/shared/graphql/index.ts"]
     }

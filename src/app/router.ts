@@ -8,6 +8,8 @@ import { Stars } from '@pages/stars';
 import { AppRoutes } from '@constants/routes';
 import { authToken } from '@constants/tokens';
 
+import { routerInstance } from '@lib/router';
+
 import type { RouteRecordRaw } from 'vue-router';
 
 const routes: Readonly<RouteRecordRaw[]> = [
@@ -43,5 +45,7 @@ router.beforeEach((to) => {
     return { name: AppRoutes.Auth };
   }
 });
+
+routerInstance.value = router;
 
 export { router };

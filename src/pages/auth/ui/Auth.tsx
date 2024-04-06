@@ -1,7 +1,6 @@
 import { defineComponent, ref } from 'vue';
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { toast } from 'vue-sonner';
 
 import { whenever } from '@vueuse/core';
 
@@ -10,6 +9,8 @@ import Button from 'primevue/button';
 import { GITHUB_AUTHORIZE_ENDPOINT } from '@constants/api';
 import { AppRoutes } from '@constants/routes';
 import { authToken } from '@constants/tokens';
+
+import { errorToast } from '@lib/sonner';
 
 type AuthResponse = {
   access_token: string;
@@ -60,14 +61,7 @@ export const Auth = defineComponent(() => {
         })
         .catch(() => {
           authToken.value = null;
-          toast.error('Something went wrong', {
-            position: 'bottom-right',
-            style: {
-              background: '#fda4af',
-              color: '#e60000',
-              border: '#fda4af',
-            },
-          });
+          errorToast('Something went wrong');
           void router.push({ name: AppRoutes.Auth });
         });
     },
