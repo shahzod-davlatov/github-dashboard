@@ -14,13 +14,16 @@ export const fetchViewerFx = createEffect(async () => {
   return viewer;
 });
 
-export const $viewer = createStore<Viewer | null>(null).on(
-  fetchViewerFx.doneData,
-  (_, viewer) => viewer
-);
+export const $viewer = createStore<Viewer | null>(null);
 
 sample({
-  source: $viewer,
-  fn: (viewer) => viewer?.login ?? userLogin.value,
+  clock: fetchViewerFx.doneData,
+  target: $viewer,
+});
+
+sample({
+  clock: $viewer,
+  filter: (viewer) => Boolean(viewer?.login),
+  fn: (viewer) => userLogin.value ?? viewer!.login,
   target: $userLogin,
 });

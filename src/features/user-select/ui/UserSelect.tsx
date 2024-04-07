@@ -2,6 +2,7 @@ import { defineComponent, h } from 'vue';
 
 import Avatar from 'primevue/avatar';
 import Dropdown from 'primevue/dropdown';
+import Skeleton from 'primevue/skeleton';
 
 import { useQuery } from '@tanstack/vue-query';
 
@@ -26,7 +27,7 @@ export const UserSelect = defineComponent(() => {
   const userLogin = useStore($userLogin);
   const userSearch = useStore($userSearch);
 
-  useQuery({
+  const { isLoading } = useQuery({
     queryKey: [USER_SEARCH_QUERY_KEY, userSearch],
     queryFn: () => fetchUserSearchFx(String(userSearch.value)),
     enabled: () => Boolean(userSearch.value),
@@ -56,8 +57,8 @@ export const UserSelect = defineComponent(() => {
         optionValue: 'login',
         optionGroupLabel: 'label',
         optionGroupChildren: 'items',
-        class: 'w-52',
-        loading: !userLogin.value,
+        class: 'w-60',
+        loading: !userLogin.value || isLoading.value,
         filter: true,
         resetFilterOnHide: true,
         'onUpdate:modelValue': handleSelect,
@@ -75,8 +76,12 @@ export const UserSelect = defineComponent(() => {
         ),
         value: () => (
           <div class="flex items-center gap-x-2">
-            <Avatar image={user.value?.avatarUrl} shape="circle" />
-            <div class="font-normal">{user.value?.name}</div>
+            {!user.value && <Skeleton size="1.25rem" shape="circle" />}
+            {!user.value && <Skeleton width="100%" />}
+            {user.value && (
+              <Avatar image={user.value.avatarUrl} shape="circle" />
+            )}
+            {user.value && <div class="font-normal">{user.value.name}</div>}
           </div>
         ),
       }

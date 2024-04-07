@@ -10,7 +10,11 @@ const userLoginFx = createEffect((login: string | null) => {
   userLogin.value = login;
 });
 
-export const fetchUserFx = createEffect(async (login: string) => {
+export const fetchUserFx = createEffect(async (login: string | null) => {
+  if (!login) {
+    throw new Error('Login not found');
+  }
+
   const { user } = await userRequest(login);
 
   return user;
@@ -18,19 +22,15 @@ export const fetchUserFx = createEffect(async (login: string) => {
 
 export const $userLogin = createStore<string | null>(null);
 
-export const $user = createStore<User>(null).on(
-  fetchUserFx.doneData,
-  (_, user) => user
-);
+export const $user = createStore<User>(null);
 
 sample({
-  source: $userLogin,
-  filter: (login) => login !== null,
-  fn: (login) => String(login),
-  target: [fetchUserFx],
+  clock: fetchUserFx.doneData,
+  target: $user,
 });
 
 sample({
-  source: $userLogin,
-  target: userLoginFx,
+  clock: $userLogin,
+  filter: (login) => login !== null,
+  target: [fetchUserFx, userLoginFx],
 });

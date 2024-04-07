@@ -16,30 +16,33 @@ export const fetchUserSearchFx = createEffect(async (query: string) => {
 });
 
 export const $userSearch = createStore<string | null>(null);
-export const $users = createStore<Users>(null).on(
-  fetchUserSearchFx.doneData,
-  (_, users) => users
-);
+export const $users = createStore<Users>(null);
 
 sample({
-  source: selectUserLogin,
+  clock: fetchUserSearchFx.doneData,
+  target: $users,
+});
+
+sample({
+  clock: selectUserLogin,
   target: $userLogin,
 });
 
 sample({
-  source: searchInput,
+  clock: selectUserLogin,
+  fn: () => null,
+  target: [$userSearch, $users],
+});
+
+sample({
+  clock: searchInput,
+  fn: (input) => (input === '' ? null : input),
   target: $userSearch,
 });
 
 sample({
-  source: searchInput,
-  filter: (value) => value === '',
-  fn: () => null,
-  target: [$userSearch, $users],
-});
-
-sample({
-  source: selectUserLogin,
-  fn: () => null,
-  target: [$userSearch, $users],
+  clock: $userSearch,
+  filter: (search) => search === null,
+  fn: (search) => search as null,
+  target: $users,
 });
