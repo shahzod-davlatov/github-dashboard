@@ -2,7 +2,7 @@ import { defineComponent } from 'vue';
 import { RouterView, useRoute } from 'vue-router';
 import { Toaster } from 'vue-sonner';
 
-import { Layout } from '@pages/layout';
+import { Layout } from '@widgets/layout';
 
 import { APP_ROUTES } from '@constants/routes';
 

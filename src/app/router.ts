@@ -4,8 +4,6 @@ import { authToken } from '@localStorages/tokens';
 
 import { Auth } from '@pages/auth';
 import { Home } from '@pages/home';
-import { Repositories } from '@pages/repositories';
-import { Stars } from '@pages/stars';
 
 import { APP_ROUTES } from '@constants/routes';
 
@@ -23,16 +21,6 @@ const routes: Readonly<RouteRecordRaw[]> = [
     path: '/auth',
     component: Auth,
     name: APP_ROUTES.AUTH,
-  },
-  {
-    path: '/repositories',
-    component: Repositories,
-    name: APP_ROUTES.REPOSITORIES,
-  },
-  {
-    path: '/stars',
-    component: Stars,
-    name: APP_ROUTES.STARS,
   },
 ];
 

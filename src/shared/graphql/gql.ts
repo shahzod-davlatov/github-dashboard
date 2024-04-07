@@ -1,6 +1,6 @@
 /* eslint-disable */
 import * as types from './graphql';
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 
 /**
  * Map of all GraphQL operations in the project.
@@ -13,6 +13,8 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+  '\n      query UserOverview($login: String!) {\n        user(login: $login) {\n          bio\n          company\n          location\n          login\n          name\n          url\n          websiteUrl\n          status {\n            id\n          }\n          followers {\n            totalCount\n          }\n          following {\n            totalCount\n          }\n          lists {\n            totalCount\n          }\n          repositories {\n            totalCount\n          }\n          organizations {\n            totalCount\n          }\n          packages {\n            totalCount\n          }\n          pinnedItems {\n            totalCount\n          }\n          projects {\n            totalCount\n          }\n          sponsoring {\n            totalCount\n          }\n          sponsors {\n            totalCount\n          }\n          starredRepositories {\n            totalCount\n          }\n          watching {\n            totalCount\n          }\n          contributionsCollection {\n            totalIssueContributions\n            totalCommitContributions\n            totalRepositoryContributions\n            totalPullRequestContributions\n            totalPullRequestReviewContributions\n          }\n        }\n      }\n    ':
+    types.UserOverviewDocument,
   '\n      query User($login: String!) {\n        user(login: $login) {\n          id\n          name\n          login\n          url\n          avatarUrl\n        }\n      }\n    ':
     types.UserDocument,
   '\n      query Viewer {\n        viewer {\n          id\n          name\n          login\n          avatarUrl\n        }\n      }\n    ':
@@ -35,6 +37,12 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: '\n      query UserOverview($login: String!) {\n        user(login: $login) {\n          bio\n          company\n          location\n          login\n          name\n          url\n          websiteUrl\n          status {\n            id\n          }\n          followers {\n            totalCount\n          }\n          following {\n            totalCount\n          }\n          lists {\n            totalCount\n          }\n          repositories {\n            totalCount\n          }\n          organizations {\n            totalCount\n          }\n          packages {\n            totalCount\n          }\n          pinnedItems {\n            totalCount\n          }\n          projects {\n            totalCount\n          }\n          sponsoring {\n            totalCount\n          }\n          sponsors {\n            totalCount\n          }\n          starredRepositories {\n            totalCount\n          }\n          watching {\n            totalCount\n          }\n          contributionsCollection {\n            totalIssueContributions\n            totalCommitContributions\n            totalRepositoryContributions\n            totalPullRequestContributions\n            totalPullRequestReviewContributions\n          }\n        }\n      }\n    '
+): (typeof documents)['\n      query UserOverview($login: String!) {\n        user(login: $login) {\n          bio\n          company\n          location\n          login\n          name\n          url\n          websiteUrl\n          status {\n            id\n          }\n          followers {\n            totalCount\n          }\n          following {\n            totalCount\n          }\n          lists {\n            totalCount\n          }\n          repositories {\n            totalCount\n          }\n          organizations {\n            totalCount\n          }\n          packages {\n            totalCount\n          }\n          pinnedItems {\n            totalCount\n          }\n          projects {\n            totalCount\n          }\n          sponsoring {\n            totalCount\n          }\n          sponsors {\n            totalCount\n          }\n          starredRepositories {\n            totalCount\n          }\n          watching {\n            totalCount\n          }\n          contributionsCollection {\n            totalIssueContributions\n            totalCommitContributions\n            totalRepositoryContributions\n            totalPullRequestContributions\n            totalPullRequestReviewContributions\n          }\n        }\n      }\n    '];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

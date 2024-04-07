@@ -20,9 +20,8 @@ export type Group = {
   items: GroupItem[];
 };
 
-const isUser = (
-  user: Exclude<Users, null | undefined>[number]
-): user is GroupItem => Boolean(user);
+const isUser = (user: Exclude<Users, null>[number]): user is GroupItem =>
+  Boolean(user);
 
 export const useGroupedUsers = () => {
   const viewer = useStore($viewer);

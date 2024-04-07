@@ -1,4 +1,4 @@
-import { DropdownProps, DropdownState } from 'primevue/dropdown';
+import type { DropdownProps, DropdownState } from 'primevue/dropdown';
 
 export const dropdown = {
   root: ({ props, state }: { props: DropdownProps; state: DropdownState }) => ({

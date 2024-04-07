@@ -8,7 +8,7 @@ import { App } from './App';
 import PrimeVuePreset from './primeVuePreset';
 import { router } from './router';
 
-import 'primeicons/primeicons.css';
+import 'lucide-static/font/lucide.css';
 import './style.css';
 
 const app = createApp(App);

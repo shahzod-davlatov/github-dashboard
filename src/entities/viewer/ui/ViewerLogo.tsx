@@ -16,7 +16,7 @@ export const ViewerLogo = defineComponent(() => {
   useQuery({
     queryKey: [VIEWER_QUERY_KEY],
     queryFn: () => fetchViewerFx(),
-    enabled: () => !viewer.value,
+    refetchOnWindowFocus: false,
   });
 
   return () => (

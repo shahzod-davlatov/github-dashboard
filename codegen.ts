@@ -8,6 +8,9 @@ const config: CodegenConfig = {
     './src/shared/graphql/': {
       preset: 'client',
       config: {
+        maybeValue: 'T',
+        useTypeImports: true,
+        avoidOptionals: true,
         skipTypename: true,
         scalars: {
           URI: 'string',

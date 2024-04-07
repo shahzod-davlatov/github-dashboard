@@ -72,7 +72,7 @@ export const Auth = defineComponent(() => {
   return () => (
     <div class="flex h-dvh w-dvw items-center justify-center">
       <Button
-        icon="pi pi-github"
+        icon="icon-github"
         disabled={Boolean(code.value)}
         loading={Boolean(code.value)}
         label={code.value ? 'Please wait' : 'Continue with GitHub'}

@@ -4,6 +4,9 @@ import { global } from './global';
 import { ripple } from './ripple';
 import { skeleton } from './skeleton';
 import { dropdown } from './dropdown';
+import { inlinemessage } from './inlinemessage';
+import { message } from './message';
+import { card } from './card';
 
 export default {
   global,
@@ -14,4 +17,7 @@ export default {
   button,
   skeleton,
   dropdown,
+  inlinemessage,
+  message,
+  card,
 };

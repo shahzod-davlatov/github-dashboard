@@ -1,4 +1,4 @@
-import { SkeletonProps } from 'primevue/skeleton';
+import type { SkeletonProps } from 'primevue/skeleton';
 
 export const skeleton = {
   root: ({ props }: { props: SkeletonProps }) => ({
