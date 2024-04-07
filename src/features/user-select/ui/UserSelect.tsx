@@ -20,6 +20,7 @@ import {
   fetchUserSearchFx,
 } from '../model';
 
+import type { Group, GroupItem } from '../lib';
 import type { DropdownFilterEvent } from 'primevue/dropdown';
 
 export const UserSelect = defineComponent(() => {
@@ -65,12 +66,12 @@ export const UserSelect = defineComponent(() => {
         onFilter: handleFilter,
       },
       {
-        optiongroup: (slotProps: { option: { label: string } }) => (
+        optiongroup: (slotProps: { option: Group }) => (
           <div class="text-xs font-light">{slotProps.option.label}</div>
         ),
-        option: (slotProps: { option: { name: string; avatar: string } }) => (
+        option: (slotProps: { option: GroupItem }) => (
           <div class="flex items-center gap-x-2">
-            <Avatar image={slotProps.option.avatar} shape="circle" />
+            <Avatar image={slotProps.option.avatarUrl} shape="circle" />
             <div class="font-normal">{slotProps.option.name}</div>
           </div>
         ),

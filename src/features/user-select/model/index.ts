@@ -7,7 +7,9 @@ import { userSearchRequest } from '../api';
 export const selectUserLogin = createEvent<string>();
 export const searchInput = createEvent<string>();
 
-type Users = Awaited<ReturnType<typeof userSearchRequest>>['search']['nodes'];
+export type Users = Awaited<
+  ReturnType<typeof userSearchRequest>
+>['search']['nodes'];
 
 export const fetchUserSearchFx = createEffect(async (query: string) => {
   const { search } = await userSearchRequest(query);
