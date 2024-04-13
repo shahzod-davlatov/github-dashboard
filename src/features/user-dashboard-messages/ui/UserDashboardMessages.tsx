@@ -33,11 +33,11 @@ export const UserDashboardMessages = defineComponent<Props, Emits>(
       <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {dashboardInfo.value.map((info) =>
           !userOverview.value || props.isLoading ? (
-            <Skeleton key={info.key} height="3rem" />
+            <Skeleton height="3rem" key={info.key} />
           ) : (
             <DashboardInfo
-              key={info.key}
               icon={info.icon}
+              key={info.key}
               onClick={handleClick(info.key)}
             >
               {info.text}

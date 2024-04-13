@@ -31,9 +31,9 @@ export const DashboardOverview = defineComponent(() => {
   const userLogin = useStore($userLogin);
 
   const { isLoading } = useQuery({
-    queryKey: [USER_OVERVIEW_QUERY_KEY, userLogin],
-    queryFn: () => fetchUserOverviewFx(userLogin.value!),
     enabled: () => Boolean(userLogin.value),
+    queryFn: () => fetchUserOverviewFx(userLogin.value!),
+    queryKey: [USER_OVERVIEW_QUERY_KEY, userLogin],
     refetchOnWindowFocus: false,
   });
 
@@ -49,7 +49,7 @@ export const DashboardOverview = defineComponent(() => {
               {Array(12)
                 .fill(Number)
                 .map((_, index) => (
-                  <Skeleton key={index} height="3rem" />
+                  <Skeleton height="3rem" key={index} />
                 ))}
             </div>
           ),

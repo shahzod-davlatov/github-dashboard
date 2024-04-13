@@ -9,63 +9,63 @@ export const useDashboardInfo = () => {
 
   const dashboardInfo = computed(() => [
     {
-      key: 'repositories',
       icon: 'icon-book-marked',
+      key: 'repositories',
       text: `Repositories: ${String(userOverview.value?.repositories.totalCount ?? '')}`,
     },
     {
-      key: 'stars',
       icon: 'icon-star',
+      key: 'stars',
       text: `Stars: ${String(userOverview.value?.starredRepositories.totalCount ?? '')}`,
     },
     {
-      key: 'pinned',
       icon: 'icon-pin',
+      key: 'pinned',
       text: `Pinned: ${String(userOverview.value?.pinnedItems.totalCount ?? '')}`,
     },
     {
-      key: 'curated',
       icon: 'icon-cctv',
+      key: 'curated',
       text: `Curated: ${String(userOverview.value?.lists.totalCount ?? '')}`,
     },
     {
-      key: 'watching',
       icon: 'icon-scan-eye',
+      key: 'watching',
       text: `Watching: ${String(userOverview.value?.watching.totalCount ?? '')}`,
     },
     {
-      key: 'packages',
       icon: 'icon-package',
+      key: 'packages',
       text: `Packages: ${String(userOverview.value?.packages.totalCount ?? '')}`,
     },
     {
-      key: 'projects',
       icon: 'icon-panels-top-left',
+      key: 'projects',
       text: `Projects: ${String(userOverview.value?.projects.totalCount ?? '')}`,
     },
     {
-      key: 'followers',
       icon: 'icon-users',
+      key: 'followers',
       text: `Followers: ${String(userOverview.value?.followers.totalCount ?? '')}`,
     },
     {
-      key: 'following',
       icon: 'icon-user',
+      key: 'following',
       text: `Following: ${String(userOverview.value?.following.totalCount ?? '')}`,
     },
     {
-      key: 'organizations',
       icon: 'icon-building-2',
+      key: 'organizations',
       text: `Organizations: ${String(userOverview.value?.organizations.totalCount ?? '')}`,
     },
     {
-      key: 'sponsoring',
       icon: 'icon-coins',
+      key: 'sponsoring',
       text: `Sponsoring: ${String(userOverview.value?.sponsoring.totalCount ?? '')}`,
     },
     {
-      key: 'sponsors',
       icon: 'icon-hand-coins',
+      key: 'sponsors',
       text: `Sponsors: ${String(userOverview.value?.sponsors.totalCount ?? '')}`,
     },
   ]);

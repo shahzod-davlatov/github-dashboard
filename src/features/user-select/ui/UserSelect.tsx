@@ -15,13 +15,14 @@ import { USER_SEARCH_QUERY_KEY } from '@constants/queryKeys';
 import { useGroupedUsers } from '../lib';
 import {
   $userSearch,
-  selectUserLogin,
-  searchInput,
   fetchUserSearchFx,
+  searchInput,
+  selectUserLogin,
 } from '../model';
 
-import type { Group, GroupItem } from '../lib';
 import type { DropdownFilterEvent } from 'primevue/dropdown';
+
+import type { Group, GroupItem } from '../lib';
 
 export const UserSelect = defineComponent(() => {
   const user = useStore($user);
@@ -29,9 +30,9 @@ export const UserSelect = defineComponent(() => {
   const userSearch = useStore($userSearch);
 
   const { isLoading } = useQuery({
-    queryKey: [USER_SEARCH_QUERY_KEY, userSearch],
-    queryFn: () => fetchUserSearchFx(String(userSearch.value)),
     enabled: () => Boolean(userSearch.value),
+    queryFn: () => fetchUserSearchFx(String(userSearch.value)),
+    queryKey: [USER_SEARCH_QUERY_KEY, userSearch],
   });
 
   const { groupedUsers } = useGroupedUsers();
@@ -45,39 +46,39 @@ export const UserSelect = defineComponent(() => {
   };
 
   const handleFilter = (event: DropdownFilterEvent) => {
-    searchInput(event.value);
+    searchInput(String(event.value));
   };
 
   return () =>
     h(
       Dropdown,
       {
+        class: 'w-60',
+        filter: true,
+        loading: !userLogin.value || isLoading.value,
         modelValue: userLogin.value,
-        options: groupedUsers.value,
+        onFilter: handleFilter,
+        'onUpdate:modelValue': handleSelect,
+        optionGroupChildren: 'items',
+        optionGroupLabel: 'label',
         optionLabel: 'name',
         optionValue: 'login',
-        optionGroupLabel: 'label',
-        optionGroupChildren: 'items',
-        class: 'w-60',
-        loading: !userLogin.value || isLoading.value,
-        filter: true,
+        options: groupedUsers.value,
         resetFilterOnHide: true,
-        'onUpdate:modelValue': handleSelect,
-        onFilter: handleFilter,
       },
       {
-        optiongroup: (slotProps: { option: Group }) => (
-          <div class="text-xs font-light">{slotProps.option.label}</div>
-        ),
         option: (slotProps: { option: GroupItem }) => (
           <div class="flex items-center gap-x-2">
             <Avatar image={slotProps.option.avatarUrl} shape="circle" />
             <div class="font-normal">{slotProps.option.name}</div>
           </div>
         ),
+        optiongroup: (slotProps: { option: Group }) => (
+          <div class="text-xs font-light">{slotProps.option.label}</div>
+        ),
         value: () => (
           <div class="flex items-center gap-x-2">
-            {!user.value && <Skeleton size="1.25rem" shape="circle" />}
+            {!user.value && <Skeleton shape="circle" size="1.25rem" />}
             {!user.value && <Skeleton width="100%" />}
             {user.value && (
               <Avatar image={user.value.avatarUrl} shape="circle" />

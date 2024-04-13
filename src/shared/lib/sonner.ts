@@ -5,7 +5,7 @@ export const errorToast = (message: string) =>
     position: 'bottom-right',
     style: {
       background: '#fda4af',
-      color: '#e60000',
       border: '#fda4af',
+      color: '#e60000',
     },
   });

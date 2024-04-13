@@ -13,7 +13,7 @@ export const ThemeButton = defineComponent(() => {
   };
 
   return () => (
-    <Button text onClick={handleClick}>
+    <Button onClick={handleClick} text>
       {isDark.value ? (
         <svg
           class="size-5"

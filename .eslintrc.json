@@ -2,10 +2,10 @@
   "root": true,
   "extends": [
     "eslint:recommended",
-    "plugin:import/recommended",
     "plugin:@typescript-eslint/recommended-type-checked",
     "plugin:@typescript-eslint/stylistic-type-checked",
     "plugin:@typescript-eslint/strict-type-checked",
+    "plugin:perfectionist/recommended-natural",
     "plugin:@tanstack/eslint-plugin-query/recommended",
     "plugin:tailwindcss/recommended",
     "plugin:effector/recommended",
@@ -20,12 +20,8 @@
     "project": "tsconfig.json"
   },
   "rules": {
-    "import/no-unresolved": "off",
     "vue/require-prop-types": "off",
-    "vue/multi-word-component-names": "warn",
-    "@typescript-eslint/no-unsafe-argument": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-unsafe-assignment": "warn",
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
     "no-plusplus": "error",
@@ -38,116 +34,66 @@
         "allow": ["info", "error"]
       }
     ],
-    "no-empty": [
-      "error",
-      {
-        "allowEmptyCatch": true
-      }
-    ],
+    "no-empty": "error",
     "eqeqeq": "error",
-    "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
-    "import/order": [
+    "perfectionist/sort-imports": [
       "error",
       {
-        "newlines-between": "always",
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        },
+        "type": "natural",
+        "order": "asc",
         "groups": [
           "builtin",
+          "vue",
+          "vueuse",
+          "primevue",
+          "tanstack",
+          "effector",
           "external",
+          "api",
+          "graphql",
+          "pages",
+          "widgets",
+          "features",
+          "entities",
+          "ui",
+          "constants",
+          "lib",
+          "localStorages",
           "internal",
-          "unknown",
           "parent",
           "sibling",
           "index",
           "object",
-          "type"
+          "style",
+          "type",
+          "builtin-type",
+          "external-type",
+          "internal-type",
+          "parent-type",
+          "sibling-type",
+          "index-type",
+          "unknown"
         ],
-        "pathGroupsExcludedImportTypes": ["type"],
-        "pathGroups": [
-          {
-            "pattern": "vue**",
-            "group": "external",
-            "position": "before"
-          },
-          {
-            "pattern": "@vueuse/**",
-            "group": "external",
-            "position": "before"
-          },
-          {
-            "pattern": "primevue/**",
-            "group": "external",
-            "position": "before"
-          },
-          {
-            "pattern": "@tanstack/**",
-            "group": "external",
-            "position": "before"
-          },
-          {
-            "pattern": "effector",
-            "group": "external",
-            "position": "before"
-          },
-          {
-            "pattern": "effector-vue/composition",
-            "group": "external",
-            "position": "before"
-          },
-          {
-            "pattern": "@api",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "@graphql",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "@pages/**",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "@widgets/**",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "@features/**",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "@entities/**",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "@ui/**",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "@constants/**",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "@lib/**",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "@types/**",
-            "group": "type",
-            "position": "before"
+        "custom-groups": {
+          "value": {
+            "vue": "vue**",
+            "vueuse": "@vueuse/**",
+            "primevue": "primevue/**",
+            "tanstack": "@tanstack/**",
+            "effector": ["effector", "effector-vue/**"],
+            "api": "@api",
+            "graphql": "@graphql",
+            "pages": "@pages/**",
+            "widgets": "@widgets/**",
+            "features": "@features/**",
+            "entities": "@entities/**",
+            "ui": "@ui/**",
+            "constants": "@constants/**",
+            "lib": "@lib/**",
+            "localStorages": "@localStorages/**"
           }
-        ]
+        },
+        "newlines-between": "always"
       }
     ],
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
@@ -158,28 +104,6 @@
         "fixStyle": "separate-type-imports"
       }
     ],
-    "vue/define-props-declaration": ["error", "type-based"],
-    "vue/define-emits-declaration": ["error", "type-literal"],
-    "vue/attributes-order": [
-      "error",
-      {
-        "alphabetical": true,
-        "order": [
-          "DEFINITION",
-          "LIST_RENDERING",
-          "CONDITIONALS",
-          "RENDER_MODIFIERS",
-          "GLOBAL",
-          ["UNIQUE", "SLOT"],
-          "TWO_WAY_BINDING",
-          "OTHER_DIRECTIVES",
-          "ATTR_DYNAMIC",
-          "ATTR_STATIC",
-          "ATTR_SHORTHAND_BOOL",
-          "EVENTS",
-          "CONTENT"
-        ]
-      }
-    ]
+    "@typescript-eslint/no-import-type-side-effects": "error"
   }
 }

@@ -16,8 +16,8 @@ const app = createApp(App);
 app.use(router);
 app.use(VueQueryPlugin);
 app.use(PrimeVue, {
-  unstyled: true,
   pt: PrimeVuePreset,
+  unstyled: true,
 });
 
 app.mount('#app');

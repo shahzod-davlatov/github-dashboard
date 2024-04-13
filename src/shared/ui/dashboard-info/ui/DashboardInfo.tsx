@@ -11,7 +11,7 @@ type Emits = {
 type Slots = SlotsType<{ default: () => VNode[] }>;
 
 export const DashboardInfo = defineComponent<Props, Emits, string, Slots>(
-  (props, { emit, slots, attrs }) => {
+  (props, { attrs, emit, slots }) => {
     const handleClick = (event: MouseEvent) => {
       event.stopPropagation();
       emit('click', event);
@@ -19,7 +19,7 @@ export const DashboardInfo = defineComponent<Props, Emits, string, Slots>(
 
     return () => (
       <div class={{ 'cursor-pointer': attrs.onClick }} onClick={handleClick}>
-        <Message severity={attrs.onClick ? 'info' : 'warn'} closable={false}>
+        <Message closable={false} severity={attrs.onClick ? 'info' : 'warn'}>
           {{
             default: () => slots.default(),
             messageicon: () => <div class={[props.icon, 'mr-2 text-xl']}></div>,

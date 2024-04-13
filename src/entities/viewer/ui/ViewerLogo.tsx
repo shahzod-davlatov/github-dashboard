@@ -14,16 +14,16 @@ export const ViewerLogo = defineComponent(() => {
   const viewer = useStore($viewer);
 
   useQuery({
-    queryKey: [VIEWER_QUERY_KEY],
     queryFn: () => fetchViewerFx(),
+    queryKey: [VIEWER_QUERY_KEY],
     refetchOnWindowFocus: false,
   });
 
   return () => (
     <Avatar
       image={viewer.value?.avatarUrl}
-      shape="circle"
       label={viewer.value?.avatarUrl ? undefined : 'YOU'}
+      shape="circle"
       size="large"
     />
   );

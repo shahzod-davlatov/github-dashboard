@@ -6,12 +6,12 @@ import { whenever } from '@vueuse/core';
 
 import Button from 'primevue/button';
 
-import { authToken } from '@localStorages/tokens';
-
 import { GITHUB_AUTHORIZE_ENDPOINT } from '@constants/api';
 import { APP_ROUTES } from '@constants/routes';
 
 import { errorToast } from '@lib/sonner';
+
+import { authToken } from '@localStorages/tokens';
 
 type AuthResponse = {
   access_token: string;
@@ -72,13 +72,13 @@ export const Auth = defineComponent(() => {
   return () => (
     <div class="flex h-dvh w-dvw items-center justify-center">
       <Button
-        icon="icon-github"
         disabled={Boolean(code.value)}
-        loading={Boolean(code.value)}
+        icon="icon-github"
         label={code.value ? 'Please wait' : 'Continue with GitHub'}
+        loading={Boolean(code.value)}
         onClick={handleClick}
       />
-      <a href={url.toString()} target="_self" class="hidden" ref={githubLink} />
+      <a class="hidden" href={url.toString()} ref={githubLink} target="_self" />
     </div>
   );
 });

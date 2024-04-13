@@ -1,3 +1,4 @@
+/* eslint-disable perfectionist/sort-objects */
 import { computed } from 'vue';
 
 import { useStore } from 'effector-vue/composition';
@@ -8,12 +9,11 @@ import type { UserOverview } from '@entities/user-overview';
 
 const userInfoKeys: (keyof Pick<
   Exclude<UserOverview, null>,
-  'name' | 'login' | 'bio' | 'location' | 'company'
->)[] = ['name', 'login', 'bio', 'location', 'company'];
+  'bio' | 'company' | 'location' | 'name'
+>)[] = ['name', 'bio', 'location', 'company'];
 
 const userInfoIconMap: Record<(typeof userInfoKeys)[number], string> = {
   name: 'icon-contact',
-  login: 'icon-cylinder',
   bio: 'icon-book-user',
   location: 'icon-map-pin',
   company: 'icon-building',

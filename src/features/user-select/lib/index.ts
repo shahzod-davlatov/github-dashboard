@@ -10,14 +10,14 @@ import { $userSearch, $users } from '../model';
 import type { Users } from '../model';
 
 export type GroupItem = {
-  name: string;
-  login: string;
   avatarUrl: string;
+  login: string;
+  name: string;
 };
 
 export type Group = {
-  label: string;
   items: GroupItem[];
+  label: string;
 };
 
 const isUser = (user: Exclude<Users, null>[number]): user is GroupItem =>
@@ -32,27 +32,27 @@ export const useGroupedUsers = () => {
   const groupedUsers = computed<Group[]>(() => {
     const groups = [
       {
-        label: 'Personal Account',
         items: [
           {
-            name: viewer.value?.name ?? '',
-            login: viewer.value?.login ?? '',
             avatarUrl: viewer.value?.avatarUrl ?? '',
+            login: viewer.value?.login ?? '',
+            name: viewer.value?.name ?? '',
           },
         ],
+        label: 'Personal Account',
       },
     ];
 
     if (viewer.value?.id !== user.value?.id) {
       groups.push({
-        label: 'Current Account',
         items: [
           {
-            name: user.value?.name ?? '',
-            login: user.value?.login ?? '',
             avatarUrl: user.value?.avatarUrl ?? '',
+            login: user.value?.login ?? '',
+            name: user.value?.name ?? '',
           },
         ],
+        label: 'Current Account',
       });
     }
 
@@ -68,9 +68,9 @@ export const useGroupedUsers = () => {
           }
 
           acc.push({
-            name: searchedUser.name,
-            login: searchedUser.login,
             avatarUrl: searchedUser.avatarUrl,
+            login: searchedUser.login,
+            name: searchedUser.name,
           });
 
           return acc;
@@ -79,8 +79,8 @@ export const useGroupedUsers = () => {
       );
 
       groups.push({
-        label: 'Search',
         items: groupItems ?? [],
+        label: 'Search',
       });
     }
 

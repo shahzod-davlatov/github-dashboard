@@ -6,11 +6,11 @@ import { userRequest } from '../api';
 
 export type User = Awaited<ReturnType<typeof userRequest>>['user'];
 
-const userLoginFx = createEffect((login: string | null) => {
+const userLoginFx = createEffect((login: null | string) => {
   userLogin.value = login;
 });
 
-export const fetchUserFx = createEffect(async (login: string | null) => {
+export const fetchUserFx = createEffect(async (login: null | string) => {
   if (!login) {
     throw new Error('Login not found');
   }
@@ -20,7 +20,7 @@ export const fetchUserFx = createEffect(async (login: string | null) => {
   return user;
 });
 
-export const $userLogin = createStore<string | null>(null);
+export const $userLogin = createStore<null | string>(null);
 
 export const $user = createStore<User>(null);
 

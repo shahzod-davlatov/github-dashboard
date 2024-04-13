@@ -1,4 +1,4 @@
-import { defineComponent, defineAsyncComponent, Suspense } from 'vue';
+import { Suspense, defineAsyncComponent, defineComponent } from 'vue';
 
 import Skeleton from 'primevue/skeleton';
 

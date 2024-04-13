@@ -31,36 +31,36 @@ export const ContributionsChart = defineComponent<Props>(
       ) : (
         <Card class="col-span-4">
           {{
-            title: () => 'Contributions',
             content: () => (
-              <VisXYContainer height="16rem" data={contributionsData.value}>
+              <VisXYContainer data={contributionsData.value} height="16rem">
                 <VisStackedBar
+                  barPadding={0.15}
+                  color={isDark.value ? '#a78bfa' : '#8b5cf6'}
+                  roundedCorners={4}
                   x={(_: unknown, index: number) => index}
                   y={(data: (typeof contributionsData.value)[number]) =>
                     data.total
                   }
-                  color={isDark.value ? '#a78bfa' : '#8b5cf6'}
-                  roundedCorners={4}
-                  barPadding={0.15}
                 />
                 <VisAxis
-                  type="x"
+                  gridLine={false}
                   numTicks={contributionsData.value.length}
                   tickFormat={(index: number) =>
                     contributionsData.value[index]?.name
                   }
-                  gridLine={false}
                   tickLine={false}
+                  type="x"
                 />
                 <VisAxis
-                  type="y"
-                  numTicks={contributionsData.value.length}
-                  gridLine={false}
-                  tickLine={false}
                   domainLine={false}
+                  gridLine={false}
+                  numTicks={contributionsData.value.length}
+                  tickLine={false}
+                  type="y"
                 />
               </VisXYContainer>
             ),
+            title: () => 'Contributions',
           }}
         </Card>
       );

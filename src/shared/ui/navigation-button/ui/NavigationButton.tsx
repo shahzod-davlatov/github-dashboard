@@ -12,16 +12,7 @@ type Slots = SlotsType<{ default: () => VNode[] }>;
 export const NavigationButton = defineComponent<Props, {}, string, Slots>(
   (props, { slots }) => {
     return () => (
-      <Button
-        // class={[
-        //   'p-0 text-sm font-medium text-muted-foreground transition-colors hover:text-primary hover:no-underline',
-        //   { 'text-foreground': props.isCurrent },
-        // ]}
-        // variant="link"
-        // as-child
-        text
-        severity={props.isCurrent ? undefined : 'secondary'}
-      >
+      <Button severity={props.isCurrent ? undefined : 'secondary'} text>
         <RouterLink {...props}>{slots.default()}</RouterLink>
       </Button>
     );

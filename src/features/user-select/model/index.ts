@@ -17,7 +17,7 @@ export const fetchUserSearchFx = createEffect(async (query: string) => {
   return search.nodes;
 });
 
-export const $userSearch = createStore<string | null>(null);
+export const $userSearch = createStore<null | string>(null);
 export const $users = createStore<Users>(null);
 
 sample({

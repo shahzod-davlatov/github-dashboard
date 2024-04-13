@@ -28,6 +28,13 @@ export const UserDashboardInfo = defineComponent<Props>(
       ) : (
         <Card class="col-span-3">
           {{
+            content: () => (
+              <div class="flex flex-col gap-2">
+                {userInfo.value.map((info) => (
+                  <InfoText icon={info.icon} key={info.key} text={info.text!} />
+                ))}
+              </div>
+            ),
             title: () => (
               <div class="flex gap-2">
                 <span class="mr-auto">Info</span>
@@ -36,8 +43,8 @@ export const UserDashboardInfo = defineComponent<Props>(
                     <a
                       class="icon-link"
                       href={userOverview.value.websiteUrl}
-                      target="_blank"
                       rel="noreferrer"
+                      target="_blank"
                     />
                   </Button>
                 )}
@@ -46,18 +53,11 @@ export const UserDashboardInfo = defineComponent<Props>(
                     <a
                       class="icon-external-link"
                       href={userOverview.value.url}
-                      target="_blank"
                       rel="noreferrer"
+                      target="_blank"
                     />
                   </Button>
                 )}
-              </div>
-            ),
-            content: () => (
-              <div class="flex flex-col gap-2">
-                {userInfo.value.map((info) => (
-                  <InfoText key={info.key} icon={info.icon} text={info.text!} />
-                ))}
               </div>
             ),
           }}

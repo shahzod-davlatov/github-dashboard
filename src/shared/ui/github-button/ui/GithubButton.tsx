@@ -7,7 +7,7 @@ import { GITHUB_LINK } from '@constants/links';
 export const GithubButton = defineComponent(() => {
   return () => (
     <Button text>
-      <a href={GITHUB_LINK} target="_blank" rel="noreferrer">
+      <a href={GITHUB_LINK} rel="noreferrer" target="_blank">
         <svg
           class="size-5"
           fill="none"

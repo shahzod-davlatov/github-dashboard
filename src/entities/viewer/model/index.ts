@@ -1,8 +1,8 @@
 import { createEffect, createStore, sample } from 'effector';
 
-import { userLogin } from '@localStorages/user';
-
 import { $userLogin } from '@entities/user';
+
+import { userLogin } from '@localStorages/user';
 
 import { viewerRequest } from '../api';
 
