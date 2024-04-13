@@ -1,4 +1,3 @@
-/* eslint-disable perfectionist/sort-objects */
 import { computed } from 'vue';
 
 import { useStore } from 'effector-vue/composition';

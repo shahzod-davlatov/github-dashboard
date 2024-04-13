@@ -4,7 +4,7 @@ import Avatar from 'primevue/avatar';
 import Dropdown from 'primevue/dropdown';
 import Skeleton from 'primevue/skeleton';
 
-import { useQuery } from '@tanstack/vue-query';
+import { useQueries } from '@tanstack/vue-query';
 
 import { useStore } from 'effector-vue/composition';
 
@@ -12,27 +12,43 @@ import { $user, $userLogin } from '@entities/user';
 
 import { USER_SEARCH_QUERY_KEY } from '@constants/queryKeys';
 
-import { useGroupedUsers } from '../lib';
+import { savedUsers } from '@localStorages/user';
+
+import { useGroupedUsers } from '../lib/useGroupedUsers';
+import { fetchSavedUsersFx } from '../model/savedUsers';
 import {
   $userSearch,
   fetchUserSearchFx,
   searchInput,
   selectUserLogin,
-} from '../model';
+} from '../model/searchedUsers';
 
 import type { DropdownFilterEvent } from 'primevue/dropdown';
 
-import type { Group, GroupItem } from '../lib';
+import type { Group, GroupItem } from '../lib/group';
 
 export const UserSelect = defineComponent(() => {
   const user = useStore($user);
   const userLogin = useStore($userLogin);
   const userSearch = useStore($userSearch);
 
-  const { isLoading } = useQuery({
-    enabled: () => Boolean(userSearch.value),
-    queryFn: () => fetchUserSearchFx(String(userSearch.value)),
-    queryKey: [USER_SEARCH_QUERY_KEY, userSearch],
+  const queries = useQueries({
+    queries: [
+      {
+        queryKey: [USER_SEARCH_QUERY_KEY, savedUsers],
+        queryFn: () => fetchSavedUsersFx(Array.from(savedUsers.value)),
+        enabled: () => Boolean(savedUsers.value.size),
+      },
+      {
+        queryKey: [USER_SEARCH_QUERY_KEY, userSearch],
+        queryFn: () => fetchUserSearchFx(String(userSearch.value)),
+        enabled: () => Boolean(userSearch.value),
+        refetchOnWindowFocus: false,
+      },
+    ],
+    combine: (results) => ({
+      isLoading: results.some((result) => result.isLoading),
+    }),
   });
 
   const { groupedUsers } = useGroupedUsers();
@@ -55,7 +71,7 @@ export const UserSelect = defineComponent(() => {
       {
         class: 'w-60',
         filter: true,
-        loading: !userLogin.value || isLoading.value,
+        loading: !userLogin.value || queries.value.isLoading,
         modelValue: userLogin.value,
         onFilter: handleFilter,
         'onUpdate:modelValue': handleSelect,
