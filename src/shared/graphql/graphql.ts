@@ -29876,7 +29876,34 @@ export type UserRepositoriesQuery = {
         name: string;
         description: string | null;
         url: string;
-        visibility: RepositoryVisibility;
+        forkCount: number;
+        isFork: boolean;
+        isArchived: boolean;
+        isLocked: boolean;
+        primaryLanguage: { name: string; color: string | null } | null;
+      } | null> | null;
+    };
+  } | null;
+};
+
+export type UserStarsQueryVariables = Exact<{
+  login: Scalars['String']['input'];
+  after: InputMaybe<Scalars['String']['input']>;
+}>;
+
+export type UserStarsQuery = {
+  user: {
+    starredRepositories: {
+      pageInfo: { hasNextPage: boolean; endCursor: string | null };
+      nodes: Array<{
+        id: string;
+        name: string;
+        description: string | null;
+        url: string;
+        forkCount: number;
+        isFork: boolean;
+        isArchived: boolean;
+        isLocked: boolean;
         primaryLanguage: { name: string; color: string | null } | null;
       } | null> | null;
     };
@@ -30367,7 +30394,19 @@ export const UserRepositoriesDocument = {
                             },
                             {
                               kind: 'Field',
-                              name: { kind: 'Name', value: 'visibility' },
+                              name: { kind: 'Name', value: 'forkCount' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'isFork' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'isArchived' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'isLocked' },
                             },
                           ],
                         },
@@ -30386,6 +30425,163 @@ export const UserRepositoriesDocument = {
   UserRepositoriesQuery,
   UserRepositoriesQueryVariables
 >;
+export const UserStarsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'UserStars' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'login' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'after' },
+          },
+          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'user' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'login' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'login' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'starredRepositories' },
+                  arguments: [
+                    {
+                      kind: 'Argument',
+                      name: { kind: 'Name', value: 'first' },
+                      value: { kind: 'IntValue', value: '25' },
+                    },
+                    {
+                      kind: 'Argument',
+                      name: { kind: 'Name', value: 'after' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'after' },
+                      },
+                    },
+                  ],
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'pageInfo' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'hasNextPage' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'endCursor' },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'nodes' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'name' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'description' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'url' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'primaryLanguage' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'name' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'color' },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'forkCount' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'isFork' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'isArchived' },
+                            },
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'isLocked' },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserStarsQuery, UserStarsQueryVariables>;
 export const UserDocument = {
   kind: 'Document',
   definitions: [

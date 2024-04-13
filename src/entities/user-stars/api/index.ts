@@ -2,12 +2,12 @@ import { client } from '@api';
 
 import { graphql } from '@graphql';
 
-export const userRepositoriesRequest = (login: string, after: null | string) =>
+export const userStarsRequest = (login: string, after: null | string) =>
   client.request(
     graphql(`
-      query UserRepositories($login: String!, $after: String) {
+      query UserStars($login: String!, $after: String) {
         user(login: $login) {
-          repositories(first: 25, after: $after) {
+          starredRepositories(first: 25, after: $after) {
             pageInfo {
               hasNextPage
               endCursor

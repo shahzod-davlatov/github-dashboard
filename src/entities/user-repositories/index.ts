@@ -1,3 +1,8 @@
-export { $userRepositories, fetchUserRepositoriesFx } from './model';
+export {
+  $userRepositories,
+  $userRepositoriesPageInfo,
+  clearUserRepositories,
+  fetchUserRepositoriesFx,
+} from './model';
 
-export type { UserRepositories } from './model';
+export type { UserRepositories, UserRepositoriesPageInfo } from './model';

@@ -22,6 +22,8 @@ type Emits = {
   click: (key: (typeof DASHBOARD_KEYS)[number]) => void;
 };
 
+const activeKeys: (typeof DASHBOARD_KEYS)[number][] = ['repositories', 'stars'];
+
 export const UserDashboardMessages = defineComponent<Props, Emits>(
   (props, { emit }) => {
     const userOverview = useStore($userOverview);
@@ -45,7 +47,11 @@ export const UserDashboardMessages = defineComponent<Props, Emits>(
               <DashboardInfo
                 icon={info.icon}
                 key={info.key}
-                onClick={handleClick(info.key)}
+                onClick={
+                  activeKeys.includes(info.key)
+                    ? handleClick(info.key)
+                    : undefined
+                }
               >
                 {info.text}
               </DashboardInfo>

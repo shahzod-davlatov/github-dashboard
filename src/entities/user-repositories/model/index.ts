@@ -1,4 +1,4 @@
-import { createEffect, createStore, sample } from 'effector';
+import { createEffect, createEvent, createStore, sample } from 'effector';
 
 import { userRepositoriesRequest } from '../api';
 
@@ -12,8 +12,10 @@ export type UserRepositoriesPageInfo = Exclude<
   null
 >['repositories']['pageInfo'];
 
+export const clearUserRepositories = createEvent();
+
 export const fetchUserRepositoriesFx = createEffect(
-  async (args: { after: null; login: string }) => {
+  async (args: { after: null | string; login: string }) => {
     const { user } = await userRepositoriesRequest(args.login, args.after);
 
     return user!.repositories;
@@ -28,7 +30,14 @@ export const $userRepositoriesPageInfo = createStore<UserRepositoriesPageInfo>({
 
 sample({
   clock: fetchUserRepositoriesFx.doneData,
-  fn: ({ nodes }) => nodes,
+  source: $userRepositories,
+  fn: (previous, { nodes }) => {
+    if (previous) {
+      return [...previous, ...nodes!];
+    }
+
+    return nodes;
+  },
   target: $userRepositories,
 });
 
@@ -36,4 +45,10 @@ sample({
   clock: fetchUserRepositoriesFx.doneData,
   fn: ({ pageInfo }) => pageInfo,
   target: $userRepositoriesPageInfo,
+});
+
+sample({
+  clock: clearUserRepositories,
+  fn: () => null,
+  target: [$userRepositories, $userRepositoriesPageInfo],
 });

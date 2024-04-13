@@ -7,6 +7,9 @@ const AsyncUserRepositories = defineAsyncComponent(() =>
     (module) => module.UserRepositories
   )
 );
+const AsyncUserStars = defineAsyncComponent(() =>
+  import('@features/user-stars').then((module) => module.UserStars)
+);
 
 export const getSidebarHeader = (
   key: (typeof DASHBOARD_KEYS)[number] | null
@@ -16,26 +19,26 @@ export const getSidebarHeader = (
       return 'Repositories';
     case 'stars':
       return 'Stars';
-    case 'pinned':
-      return 'Pinned';
-    case 'curated':
-      return 'Curated';
-    case 'watching':
-      return 'Watching';
-    case 'packages':
-      return 'Packages';
-    case 'projects':
-      return 'Projects';
-    case 'followers':
-      return 'Followers';
-    case 'following':
-      return 'Following';
-    case 'organizations':
-      return 'Organizations';
-    case 'sponsoring':
-      return 'Sponsoring';
-    case 'sponsors':
-      return 'Sponsors';
+    // case 'pinned':
+    //   return 'Pinned';
+    // case 'curated':
+    //   return 'Curated';
+    // case 'watching':
+    //   return 'Watching';
+    // case 'packages':
+    //   return 'Packages';
+    // case 'projects':
+    //   return 'Projects';
+    // case 'followers':
+    //   return 'Followers';
+    // case 'following':
+    //   return 'Following';
+    // case 'organizations':
+    //   return 'Organizations';
+    // case 'sponsoring':
+    //   return 'Sponsoring';
+    // case 'sponsors':
+    //   return 'Sponsors';
     default:
       return '';
   }
@@ -48,28 +51,28 @@ export const getSidebarContent = (
     case 'repositories':
       return <AsyncUserRepositories />;
     case 'stars':
-      return 'Stars';
-    case 'pinned':
-      return 'Pinned';
-    case 'curated':
-      return 'Curated';
-    case 'watching':
-      return 'Watching';
-    case 'packages':
-      return 'Packages';
-    case 'projects':
-      return 'Projects';
-    case 'followers':
-      return 'Followers';
-    case 'following':
-      return 'Following';
-    case 'organizations':
-      return 'Organizations';
-    case 'sponsoring':
-      return 'Sponsoring';
-    case 'sponsors':
-      return 'Sponsors';
+      return <AsyncUserStars />;
+    // case 'pinned':
+    //   return 'Pinned';
+    // case 'curated':
+    //   return 'Curated';
+    // case 'watching':
+    //   return 'Watching';
+    // case 'packages':
+    //   return 'Packages';
+    // case 'projects':
+    //   return 'Projects';
+    // case 'followers':
+    //   return 'Followers';
+    // case 'following':
+    //   return 'Following';
+    // case 'organizations':
+    //   return 'Organizations';
+    // case 'sponsoring':
+    //   return 'Sponsoring';
+    // case 'sponsors':
+    //   return 'Sponsors';
     default:
-      return '';
+      return null;
   }
 };

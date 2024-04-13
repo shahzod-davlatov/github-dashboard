@@ -33,7 +33,7 @@ const AsyncUserDashboardInfo = defineAsyncComponent(() =>
 export const DashboardOverview = defineComponent(() => {
   const userLogin = useStore($userLogin);
 
-  const { isLoading } = useQuery({
+  const { isFetching } = useQuery({
     enabled: () => Boolean(userLogin.value),
     queryFn: () => fetchUserOverviewFx(userLogin.value!),
     queryKey: [USER_OVERVIEW_QUERY_KEY, userLogin],
@@ -50,7 +50,7 @@ export const DashboardOverview = defineComponent(() => {
         {{
           default: () => (
             <AsyncUserDashboardMessages
-              isLoading={isLoading.value}
+              isLoading={isFetching.value}
               onClick={handleClick}
             />
           ),
@@ -71,7 +71,7 @@ export const DashboardOverview = defineComponent(() => {
             default: () => (
               <AsyncContributionsChart
                 class="lg:col-span-4"
-                isLoading={isLoading.value}
+                isLoading={isFetching.value}
               />
             ),
             fallback: () => <Skeleton class="lg:col-span-4" height="100%" />,
@@ -82,7 +82,7 @@ export const DashboardOverview = defineComponent(() => {
             default: () => (
               <AsyncUserDashboardInfo
                 class="lg:col-span-3"
-                isLoading={isLoading.value}
+                isLoading={isFetching.value}
               />
             ),
             fallback: () => <Skeleton class="lg:col-span-3" height="100%" />,

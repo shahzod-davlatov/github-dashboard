@@ -10,10 +10,13 @@ import { useStore } from 'effector-vue/composition';
 
 import { fetchSavedUsersFx } from '@entities/saved-user';
 import { $user, $userLogin } from '@entities/user';
+import { clearUserRepositories } from '@entities/user-repositories';
+import { clearUserStars } from '@entities/user-stars';
 
 import {
   USER_REPOSITORIES_KEY,
   USER_SEARCH_QUERY_KEY,
+  USER_STARS_KEY,
 } from '@constants/queryKeys';
 
 import { savedUsers } from '@localStorages/user';
@@ -69,6 +72,9 @@ export const UserSelect = defineComponent(() => {
     selectUserLogin(login);
 
     queryClient.removeQueries({ queryKey: [USER_REPOSITORIES_KEY] });
+    queryClient.removeQueries({ queryKey: [USER_STARS_KEY] });
+    clearUserRepositories();
+    clearUserStars();
   };
 
   const handleFilter = (event: DropdownFilterEvent) => {
