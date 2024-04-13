@@ -18,7 +18,7 @@ type Props = {
 };
 
 export const ContributionsChart = defineComponent<Props>(
-  (props) => {
+  (props, { attrs }) => {
     const userOverview = useStore($userOverview);
 
     const isDark = useDark();
@@ -27,9 +27,9 @@ export const ContributionsChart = defineComponent<Props>(
 
     return () =>
       !userOverview.value || props.isLoading ? (
-        <Skeleton class="col-span-4" height="100%" />
+        <Skeleton {...attrs} height="100%" />
       ) : (
-        <Card class="col-span-4">
+        <Card {...attrs}>
           {{
             content: () => (
               <VisXYContainer data={contributionsData.value} height="16rem">

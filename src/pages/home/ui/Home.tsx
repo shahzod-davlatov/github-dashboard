@@ -8,6 +8,10 @@ const AsyncDashboardOverview = defineAsyncComponent(() =>
   )
 );
 
+const AsyncSidebarInfo = defineAsyncComponent(() =>
+  import('@widgets/sidebar-info').then((module) => module.SidebarInfo)
+);
+
 export const Home = defineComponent(() => {
   return () => (
     <div class="mx-auto size-full max-w-screen-2xl pt-6">
@@ -38,6 +42,9 @@ export const Home = defineComponent(() => {
       <div class="mt-4 flex size-full flex-col gap-4">
         <Suspense>
           <AsyncDashboardOverview />
+        </Suspense>
+        <Suspense>
+          <AsyncSidebarInfo />
         </Suspense>
       </div>
     </div>

@@ -23,10 +23,6 @@ export const Settings = defineComponent(() => {
     void router.push({ name: APP_ROUTES.HOME });
   };
 
-  const handleLogOut = () => {
-    void router.push({ name: APP_ROUTES.HOME });
-  };
-
   return () => (
     <div class="mx-auto flex size-full max-w-screen-2xl flex-col gap-4 pt-6">
       <Button
@@ -36,7 +32,7 @@ export const Settings = defineComponent(() => {
         onClick={handleBack}
         size="large"
       />
-      <div class="grid grow grid-cols-4 gap-4">
+      <div class="grid grow gap-4 2xl:grid-cols-4">
         <Suspense>
           {{
             default: () => (
@@ -53,7 +49,7 @@ export const Settings = defineComponent(() => {
         <Suspense>
           {{
             default: () => (
-              <Card class="col-span-3">
+              <Card class="2xl:col-span-3">
                 {{
                   content: () => <DashboardSettings />,
                   title: () => 'Dashboard settings',
@@ -64,13 +60,6 @@ export const Settings = defineComponent(() => {
           }}
         </Suspense>
       </div>
-      <Button
-        class="w-fit self-end"
-        label="Log out"
-        onClick={handleLogOut}
-        severity="danger"
-        size="large"
-      />
     </div>
   );
 });

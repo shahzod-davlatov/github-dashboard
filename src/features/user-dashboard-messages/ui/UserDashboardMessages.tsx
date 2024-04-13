@@ -12,12 +12,14 @@ import { visibleDashboardCards } from '@localStorages/dashboard';
 
 import { useDashboardInfo } from '../lib';
 
+import type { DASHBOARD_KEYS } from '@constants/dashboardKeys';
+
 type Props = {
   isLoading: boolean;
 };
 
 type Emits = {
-  click: (key: string) => void;
+  click: (key: (typeof DASHBOARD_KEYS)[number]) => void;
 };
 
 export const UserDashboardMessages = defineComponent<Props, Emits>(
@@ -26,10 +28,11 @@ export const UserDashboardMessages = defineComponent<Props, Emits>(
 
     const { dashboardInfo } = useDashboardInfo();
 
-    const handleClick = (key: string) => (event: MouseEvent) => {
-      event.stopPropagation();
-      emit('click', key);
-    };
+    const handleClick =
+      (key: (typeof DASHBOARD_KEYS)[number]) => (event: MouseEvent) => {
+        event.stopPropagation();
+        emit('click', key);
+      };
 
     return () => (
       <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">

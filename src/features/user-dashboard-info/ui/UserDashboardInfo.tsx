@@ -17,16 +17,16 @@ type Props = {
 };
 
 export const UserDashboardInfo = defineComponent<Props>(
-  (props) => {
+  (props, { attrs }) => {
     const userOverview = useStore($userOverview);
 
     const { userInfo } = useUserInfo();
 
     return () =>
       !userOverview.value || props.isLoading ? (
-        <Skeleton class="col-span-3" height="100%" />
+        <Skeleton {...attrs} height="100%" />
       ) : (
-        <Card class="col-span-3">
+        <Card {...attrs}>
           {{
             content: () => (
               <div class="flex flex-col gap-2">

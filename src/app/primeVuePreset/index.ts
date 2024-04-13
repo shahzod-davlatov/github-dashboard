@@ -8,6 +8,10 @@ import { inlinemessage } from './inlinemessage';
 import { message } from './message';
 import { card } from './card';
 import { panel } from './panel';
+import { sidebar } from './sidebar';
+import { chip } from './chip';
+import { tag } from './tag';
+import { progressspinner } from './progressspinner';
 
 export default {
   global,
@@ -22,4 +26,8 @@ export default {
   message,
   card,
   panel,
+  sidebar,
+  chip,
+  tag,
+  progressspinner,
 };

@@ -6,10 +6,13 @@ import { useQuery } from '@tanstack/vue-query';
 
 import { useStore } from 'effector-vue/composition';
 
+import { selectInfo } from '@entities/selected-info';
 import { $userLogin } from '@entities/user';
 import { fetchUserOverviewFx } from '@entities/user-overview';
 
 import { USER_OVERVIEW_QUERY_KEY } from '@constants/queryKeys';
+
+import type { DASHBOARD_KEYS } from '@constants/dashboardKeys';
 
 const AsyncContributionsChart = defineAsyncComponent(() =>
   import('@features/contributions-chart').then(
@@ -37,12 +40,19 @@ export const DashboardOverview = defineComponent(() => {
     refetchOnWindowFocus: false,
   });
 
+  const handleClick = (key: (typeof DASHBOARD_KEYS)[number]) => {
+    selectInfo(key);
+  };
+
   return () => (
     <>
       <Suspense>
         {{
           default: () => (
-            <AsyncUserDashboardMessages isLoading={isLoading.value} />
+            <AsyncUserDashboardMessages
+              isLoading={isLoading.value}
+              onClick={handleClick}
+            />
           ),
           fallback: () => (
             <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -55,21 +65,27 @@ export const DashboardOverview = defineComponent(() => {
           ),
         }}
       </Suspense>
-      <div class="grid h-96 gap-4 md:grid-cols-2 lg:grid-cols-7">
+      <div class="grid min-h-96 gap-4 md:grid-cols-2 lg:grid-cols-7">
         <Suspense>
           {{
             default: () => (
-              <AsyncContributionsChart isLoading={isLoading.value} />
+              <AsyncContributionsChart
+                class="lg:col-span-4"
+                isLoading={isLoading.value}
+              />
             ),
-            fallback: () => <Skeleton class="col-span-4" height="100%" />,
+            fallback: () => <Skeleton class="lg:col-span-4" height="100%" />,
           }}
         </Suspense>
         <Suspense>
           {{
             default: () => (
-              <AsyncUserDashboardInfo isLoading={isLoading.value} />
+              <AsyncUserDashboardInfo
+                class="lg:col-span-3"
+                isLoading={isLoading.value}
+              />
             ),
-            fallback: () => <Skeleton class="col-span-3" height="100%" />,
+            fallback: () => <Skeleton class="lg:col-span-3" height="100%" />,
           }}
         </Suspense>
       </div>
