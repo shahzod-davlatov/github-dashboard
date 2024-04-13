@@ -8,6 +8,8 @@ import { $userOverview } from '@entities/user-overview';
 
 import { DashboardInfo } from '@ui/dashboard-info';
 
+import { visibleDashboardCards } from '@localStorages/dashboard';
+
 import { useDashboardInfo } from '../lib';
 
 type Props = {
@@ -31,19 +33,21 @@ export const UserDashboardMessages = defineComponent<Props, Emits>(
 
     return () => (
       <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {dashboardInfo.value.map((info) =>
-          !userOverview.value || props.isLoading ? (
-            <Skeleton height="3rem" key={info.key} />
-          ) : (
-            <DashboardInfo
-              icon={info.icon}
-              key={info.key}
-              onClick={handleClick(info.key)}
-            >
-              {info.text}
-            </DashboardInfo>
-          )
-        )}
+        {dashboardInfo.value
+          .filter(({ key }) => visibleDashboardCards.value.has(key))
+          .map((info) =>
+            !userOverview.value || props.isLoading ? (
+              <Skeleton height="3rem" key={info.key} />
+            ) : (
+              <DashboardInfo
+                icon={info.icon}
+                key={info.key}
+                onClick={handleClick(info.key)}
+              >
+                {info.text}
+              </DashboardInfo>
+            )
+          )}
       </div>
     );
   },

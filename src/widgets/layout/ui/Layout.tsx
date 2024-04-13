@@ -1,4 +1,5 @@
 import { Suspense, defineAsyncComponent, defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
 
 import Skeleton from 'primevue/skeleton';
 
@@ -6,6 +7,8 @@ import { UserSelect } from '@features/user-select';
 
 import { GithubButton } from '@ui/github-button';
 import { ThemeButton } from '@ui/theme-button';
+
+import { APP_ROUTES } from '@constants/routes';
 
 import type { SlotsType, VNode } from 'vue';
 
@@ -16,6 +19,12 @@ const AsyncViewerLogo = defineAsyncComponent(() =>
 );
 
 export const Layout = defineComponent<{}, {}, string, Slots>((_, { slots }) => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    void router.push({ name: APP_ROUTES.SETTINGS });
+  };
+
   return () => (
     <>
       <header class="flex items-center gap-4 border-b border-surface-200 p-4 dark:border-surface-700">
@@ -25,13 +34,13 @@ export const Layout = defineComponent<{}, {}, string, Slots>((_, { slots }) => {
           <ThemeButton />
           <Suspense>
             {{
-              default: () => <AsyncViewerLogo />,
+              default: () => <AsyncViewerLogo onClick={handleClick} />,
               fallback: () => <Skeleton shape="circle" size="2rem" />,
             }}
           </Suspense>
         </div>
       </header>
-      <main class="grow">{slots.default()}</main>
+      <main class="grow p-4">{slots.default()}</main>
     </>
   );
 });

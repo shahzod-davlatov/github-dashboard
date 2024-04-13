@@ -7,6 +7,7 @@ import { dropdown } from './dropdown';
 import { inlinemessage } from './inlinemessage';
 import { message } from './message';
 import { card } from './card';
+import { panel } from './panel';
 
 export default {
   global,
@@ -20,4 +21,5 @@ export default {
   inlinemessage,
   message,
   card,
+  panel,
 };

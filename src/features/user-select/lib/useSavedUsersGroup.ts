@@ -2,10 +2,10 @@ import { computed } from 'vue';
 
 import { useStore } from 'effector-vue/composition';
 
+import { $savedUsers } from '@entities/saved-user';
 import { $user } from '@entities/user';
 
-import { $savedUsers } from '../model/savedUsers';
-import { $userSearch } from '../model/searchedUsers';
+import { $userSearch } from '../model';
 
 import type { Group, GroupItem } from './group';
 

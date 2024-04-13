@@ -5,7 +5,7 @@ import { useStore } from 'effector-vue/composition';
 import { $user } from '@entities/user';
 import { $viewer } from '@entities/viewer';
 
-import { $userSearch } from '../model/searchedUsers';
+import { $userSearch } from '../model';
 
 import type { Group } from './group';
 

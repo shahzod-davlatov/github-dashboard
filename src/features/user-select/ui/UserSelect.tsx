@@ -1,4 +1,4 @@
-import { defineComponent, h } from 'vue';
+import { computed, defineComponent, h } from 'vue';
 
 import Avatar from 'primevue/avatar';
 import Dropdown from 'primevue/dropdown';
@@ -8,6 +8,7 @@ import { useQueries } from '@tanstack/vue-query';
 
 import { useStore } from 'effector-vue/composition';
 
+import { fetchSavedUsersFx } from '@entities/saved-user';
 import { $user, $userLogin } from '@entities/user';
 
 import { USER_SEARCH_QUERY_KEY } from '@constants/queryKeys';
@@ -15,13 +16,12 @@ import { USER_SEARCH_QUERY_KEY } from '@constants/queryKeys';
 import { savedUsers } from '@localStorages/user';
 
 import { useGroupedUsers } from '../lib/useGroupedUsers';
-import { fetchSavedUsersFx } from '../model/savedUsers';
 import {
   $userSearch,
   fetchUserSearchFx,
   searchInput,
   selectUserLogin,
-} from '../model/searchedUsers';
+} from '../model';
 
 import type { DropdownFilterEvent } from 'primevue/dropdown';
 
@@ -32,11 +32,13 @@ export const UserSelect = defineComponent(() => {
   const userLogin = useStore($userLogin);
   const userSearch = useStore($userSearch);
 
+  const savedUsersArray = computed(() => Array.from(savedUsers.value));
+
   const queries = useQueries({
     queries: [
       {
-        queryKey: [USER_SEARCH_QUERY_KEY, savedUsers],
-        queryFn: () => fetchSavedUsersFx(Array.from(savedUsers.value)),
+        queryKey: [USER_SEARCH_QUERY_KEY, savedUsersArray],
+        queryFn: () => fetchSavedUsersFx(savedUsersArray.value),
         enabled: () => Boolean(savedUsers.value.size),
       },
       {

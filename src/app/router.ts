@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import { Auth } from '@pages/auth';
 import { Home } from '@pages/home';
+import { Settings } from '@pages/settings';
 
 import { APP_ROUTES } from '@constants/routes';
 
@@ -16,6 +17,11 @@ const routes: Readonly<RouteRecordRaw[]> = [
     component: Home,
     name: APP_ROUTES.HOME,
     path: '/',
+  },
+  {
+    component: Settings,
+    name: APP_ROUTES.SETTINGS,
+    path: '/settings',
   },
   {
     component: Auth,

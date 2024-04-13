@@ -2,9 +2,9 @@ import { computed } from 'vue';
 
 import { useStore } from 'effector-vue/composition';
 
-import { $searchedUsers, $userSearch } from '../model/searchedUsers';
+import { $searchedUsers, $userSearch } from '../model';
 
-import type { SearchedUsers } from '../model/searchedUsers';
+import type { SearchedUsers } from '../model';
 
 import type { Group, GroupItem } from './group';
 

@@ -29813,6 +29813,19 @@ export type WorkflowsParametersInput = {
   workflows: Array<WorkflowFileReferenceInput>;
 };
 
+export type SavedUserQueryVariables = Exact<{
+  login: Scalars['String']['input'];
+}>;
+
+export type SavedUserQuery = {
+  user: {
+    id: string;
+    name: string | null;
+    login: string;
+    avatarUrl: string;
+  } | null;
+};
+
 export type UserOverviewQueryVariables = Exact<{
   login: Scalars['String']['input'];
 }>;
@@ -29883,6 +29896,60 @@ export type UserSearchQuery = {
   };
 };
 
+export const SavedUserDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'SavedUser' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: {
+            kind: 'Variable',
+            name: { kind: 'Name', value: 'login' },
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'user' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'login' },
+                value: {
+                  kind: 'Variable',
+                  name: { kind: 'Name', value: 'login' },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'login' } },
+                { kind: 'Field', name: { kind: 'Name', value: 'avatarUrl' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<SavedUserQuery, SavedUserQueryVariables>;
 export const UserOverviewDocument = {
   kind: 'Document',
   definitions: [
