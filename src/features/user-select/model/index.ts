@@ -1,6 +1,6 @@
 import { createEffect, createEvent, createStore, sample } from 'effector';
 
-import { saveUserFx } from '@entities/saved-user/model';
+import { saveUserFx } from '@entities/saved-user';
 import { $userLogin } from '@entities/user';
 import { $viewer } from '@entities/viewer';
 
@@ -40,9 +40,9 @@ sample({
 
 sample({
   clock: selectUserLogin,
-  source: { userLogin: $userLogin, viewer: $viewer },
-  filter: ({ userLogin, viewer }) => userLogin !== viewer?.login,
-  fn: ({ userLogin }) => userLogin!,
+  source: $viewer,
+  filter: (viewer, userLogin) => userLogin !== viewer?.login,
+  fn: (_, userLogin) => userLogin,
   target: saveUserFx,
 });
 
